@@ -5,6 +5,7 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -18,8 +19,8 @@ public class DriveTrain extends SubsystemBase {
 
 
     
-    private final SpeedControllerGroup m_leftMotors;
-    private final SpeedControllerGroup m_rightMotors;
+    private final MotorControllerGroup m_leftMotors;
+    private final MotorControllerGroup m_rightMotors;
 
     private final DifferentialDrive m_drive;
 
@@ -32,8 +33,8 @@ public class DriveTrain extends SubsystemBase {
         rightPrimaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_RIGHT_PRIMARY_MOTOR);
 
 
-        m_leftMotors = new SpeedControllerGroup(leftPrimaryMotor, leftSecondaryMotor);
-        m_rightMotors = new SpeedControllerGroup(rightPrimaryMotor, rightSecondaryMotor);
+        m_leftMotors = new MotorControllerGroup(leftPrimaryMotor, leftSecondaryMotor);
+        m_rightMotors = new MotorControllerGroup(rightPrimaryMotor, rightSecondaryMotor);
 
         m_leftMotors.setInverted(true);
         m_rightMotors.setInverted(true);
