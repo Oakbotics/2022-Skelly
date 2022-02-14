@@ -5,8 +5,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.TimedAuto;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.commands.Drive;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -17,15 +20,31 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private final DriveTrain m_robotDrive = new DriveTrain(){
+    
+  };
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final Command m_autoCommand = new TimedAuto(m_robotDrive);
+  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
+
+  Joystick m_driverController = new Joystick(Constants.IOConstants.CAN_ADDRESS_DRIVERCONTROLLER);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    
+    m_robotDrive.setDefaultCommand(
+        new Drive(
+            m_robotDrive,
+            () -> m_driverController.getY(),
+            () -> m_driverController.getX()));
+
+    //SmartDashboard.putNumber("Start Time", );
+    //SmartDashboard.putNumber("Time Elapsed", time);
   }
 
   /**
