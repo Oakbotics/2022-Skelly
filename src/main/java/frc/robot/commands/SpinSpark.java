@@ -14,7 +14,8 @@ public class SpinSpark extends CommandBase {
         this.speed = speed;
         addRequirements(this.m_Climber);
     }
-
+    
+    @Override
     public void execute(){
         m_Climber.run(this.speed);
     }
