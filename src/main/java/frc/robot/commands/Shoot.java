@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
 public class Shoot extends CommandBase{
-    private Shooter m_shooter;
-    private double speed;
+    private final Shooter m_shooter;
+    private final double speed;
 
     public void shoot(Shooter m_shooter, double speed) {
         this.m_shooter = m_shooter;
