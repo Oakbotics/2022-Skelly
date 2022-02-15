@@ -32,7 +32,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_climber.setDefaultCommand(
-      new SpinSpark(m_climber, 0.5));
+      new SpinSpark(m_climber, 0.5)
+      );
   }
 
   /**
