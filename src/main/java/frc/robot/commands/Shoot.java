@@ -8,7 +8,7 @@ public class Shoot extends CommandBase{
     private Shooter m_shooter;
     private double speed;
 
-    public void Shoot(Shooter m_shooter, double speed) {
+    public void shoot(Shooter m_shooter, double speed) {
         this.m_shooter = m_shooter;
         this.speed = speed;
         addRequirements(this.m_shooter);
