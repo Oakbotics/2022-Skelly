@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
 
-    public final class ShooterConstant {
+    public static final class ShooterConstant {
         public final int CAN_ADDRESS_TOP_CONVEYOR_MOTOR = 11; 
         public final int CAN_ADDRESS_BOTTOM_CONVEYOR_MOTOR = 4; 
         public final int CAN_ADDRESS_LEFT_SHOOTER_MOTOR = 12; 
