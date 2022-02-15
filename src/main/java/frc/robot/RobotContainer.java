@@ -33,7 +33,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_shooter.setDefaultCommand(
-      new shoot(m_shooter, 0.5)
+      new Shoot(m_shooter, 0.5)
     );
     
   }

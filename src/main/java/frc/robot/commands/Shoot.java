@@ -6,17 +6,17 @@ import frc.robot.subsystems.Shooter;
 
 public class Shoot extends CommandBase{
     private final Shooter m_shooter;
-    private final double m_speed;
+    private final double speed;
 
-    public void shoot(Shooter shooter, double speed) {
-        m_shooter = shooter;
-        m_speed = speed;
+    public Shoot(Shooter m_shooter, double speed) {
+        this.m_shooter = m_shooter;
+        this.speed = speed;
         addRequirements(m_shooter);
     }
 
     @Override
     public void execute() {
-        m_shooter.shoot(m_speed);
+        this.m_shooter.run(speed);
     }
 
 
