@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.RunConveryor;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -35,7 +36,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    
+
   }
 
   /**
@@ -47,6 +48,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(m_controller, 7)
     .whenHeld(new Shoot(m_shooter, 0.5));
+    new JoystickButton(m_controller, 4)
+    .whenHeld(new RunConveryor(m_shooter, 0.5));
 
   }
 

@@ -16,7 +16,7 @@ public class Shoot extends CommandBase{
 
     @Override
     public void execute() {
-        this.m_shooter.run(speed);
+        this.m_shooter.shoot(speed);
     }
 
 

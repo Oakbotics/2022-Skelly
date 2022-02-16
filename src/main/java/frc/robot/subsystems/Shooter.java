@@ -16,11 +16,16 @@ public class Shooter extends SubsystemBase{
     private final CANSparkMax rightShooterMotor = new CANSparkMax(Constants.ShooterConstant.CAN_ADDRESS_RIGHT_SHOOTER_MOTOR, MotorType.kBrushless);
 
 
-    public void run(double speed) {
+    public void shoot(double speed) {
         topConveryorMotor.set(speed);
         bottomConveryorMotor.set(-speed);
         leftShooterMotor.set(speed);
         rightShooterMotor.set(-speed);
+    }
+
+    public void runConveryor(double speed) {
+        topConveryorMotor.set(speed);
+        bottomConveryorMotor.set(-speed);
     }
 
 
