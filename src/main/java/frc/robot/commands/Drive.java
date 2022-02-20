@@ -19,5 +19,6 @@ public class Drive extends CommandBase {
     @Override
     public void execute() {
         m_driveTrain.arcadeDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
+        m_driveTrain.getEncoders();
     }
 }

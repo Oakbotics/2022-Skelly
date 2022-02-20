@@ -11,7 +11,7 @@ import frc.robot.commands.TimedAuto;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveDistance;
-import frc.robot.commands.ResetEncoder;
+import frc.robot.commands.ResetDriveTrainEncoder;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -58,9 +58,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_controller, 4)
-    .whenHeld(new DriveDistance(m_robotDrive,0.5));
+    .whenPressed(new DriveDistance(m_robotDrive, 120, 0.3));
     new JoystickButton(m_controller, 2)
-    .whenPressed(new ResetEncoder(m_robotDrive));
+    .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
   }
 
   /**

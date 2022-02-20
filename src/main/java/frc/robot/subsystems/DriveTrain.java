@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
+import com.ctre.phoenix.motorcontrol.GroupMotorControllers;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -24,9 +27,13 @@ public class DriveTrain extends SubsystemBase {
     private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(rightPrimaryMotor, rightSecondaryMotor);
 
     private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
-    
+
+    public DriveTrain() {
+        m_rightMotors.setInverted(true);
+    }
+
     public void arcadeDrive(double fwd, double rot) {
-        m_drive.arcadeDrive(fwd, rot);
+        m_drive.arcadeDrive(fwd, -rot);
     }
 
     public void setSpeed(double speed) {
@@ -38,13 +45,27 @@ public class DriveTrain extends SubsystemBase {
         m_drive.setMaxOutput(maxOutput);
     }
 
-    public void resetEncoders() {
-        leftPrimaryMotor.setSelectedSensorPosition(0);
-        SmartDashboard.putNumber("left encoder", leftPrimaryMotor.getSelectedSensorPosition());
+    public double getAverageEncoderDistance() {
+        return (-(leftPrimaryMotor.getSelectedSensorPosition()) + rightPrimaryMotor.getSelectedSensorPosition()) / 2.0;
     }
 
-    public void getLeftEncoder() {
+    // public void goForwardInches(double distance) {
+    //     rightPrimaryMotor.set(TalonFXControlMode.Position, distance*(Constants.AutoConstants.ENCODER_TICKS_PER_INCH));
+    //     rightSecondaryMotor.set(TalonFXControlMode.Position, distance*(Constants.AutoConstants.ENCODER_TICKS_PER_INCH));
+    //     leftPrimaryMotor.set(TalonFXControlMode.Position, -(distance*(Constants.AutoConstants.ENCODER_TICKS_PER_INCH)));
+    //     leftSecondaryMotor.set(TalonFXControlMode.Position, -(distance*(Constants.AutoConstants.ENCODER_TICKS_PER_INCH)));
+    // }
+
+    public void resetEncoders() {
+        leftPrimaryMotor.setSelectedSensorPosition(0);
+        rightPrimaryMotor.setSelectedSensorPosition(0);
         SmartDashboard.putNumber("left encoder", leftPrimaryMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("right encoder", rightPrimaryMotor.getSelectedSensorPosition());
+    }
+
+    public void getEncoders() {
+        SmartDashboard.putNumber("left encoder", leftPrimaryMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("right encoder", rightPrimaryMotor.getSelectedSensorPosition());
     }
 }
 

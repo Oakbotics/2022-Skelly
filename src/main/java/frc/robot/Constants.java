@@ -23,4 +23,11 @@ public final class Constants {
     public static final class IOConstants {
         public static final int CAN_ADDRESS_DRIVERCONTROLLER = 0;
     }
+
+    public static final class AutoConstants {
+       
+        // public static final double ENCODER_TICKS_PER_INCH = 2048 / ((Math.PI*6 )/10);
+        public static final double ENCODER_TICKS_PER_INCH = 1500; 
+        //                                      Encoder ticks per rotation  / inches travelled per rotation of motor
+    }
 }
