@@ -12,6 +12,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -30,7 +31,7 @@ public class RobotContainer {
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
-  Joystick m_driverController = new Joystick(Constants.IOConstants.CAN_ADDRESS_DRIVERCONTROLLER);
+  Joystick m_controller = new Joystick(Constants.IOConstants.CAN_ADDRESS_DRIVERCONTROLLER);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -40,8 +41,8 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         new Drive(
             m_robotDrive,
-            () -> m_driverController.getY(),
-            () -> m_driverController.getX()));
+            () -> m_controller.getY(),
+            () -> m_controller.getX()));
 
     //SmartDashboard.putNumber("Start Time", );
     //SmartDashboard.putNumber("Time Elapsed", time);
@@ -53,7 +54,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    new JoystickButton(m_controller), 4)
+    
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

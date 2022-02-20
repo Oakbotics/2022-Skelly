@@ -5,6 +5,8 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -37,7 +39,8 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void resetEncoders() {
-        
+        leftPrimaryMotor.setSelectedSensorPosition(0);
+        SmartDashboard.putNumber("left encoder", leftPrimaryMotor.getSelectedSensorPosition());
     }
 }
 
