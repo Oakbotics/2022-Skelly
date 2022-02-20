@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TimedAuto;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.Drive;
+import frc.robot.commands.DriveDistance;
+import frc.robot.commands.ResetEncoder;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -55,8 +57,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_controller), 4)
-    
+    new JoystickButton(m_controller, 4)
+    .whenHeld(new DriveDistance(m_robotDrive,0.5));
+    new JoystickButton(m_controller, 2)
+    .whenPressed(new ResetEncoder(m_robotDrive));
   }
 
   /**

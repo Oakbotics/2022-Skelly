@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.DriveTrain;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class DriveDistance extends CommandBase {
     private final DriveTrain m_driveTrain;
     private final double speed;
@@ -15,12 +17,8 @@ public class DriveDistance extends CommandBase {
     }
 
     @Override
-    public void initialize() {
-        m_driveTrain.resetEncoders();
-    }
-
-    @Override
     public void execute() {
         m_driveTrain.arcadeDrive(speed, 0);
+        m_driveTrain.getLeftEncoder();
     }
 }
