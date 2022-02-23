@@ -23,6 +23,7 @@ public class Climber extends SubsystemBase {
     public void run(double speed) {
         leftMotor.set(speed);
         rightMotor.set(speed);
+        m_compressor.enableDigital();
     }
 
 }
