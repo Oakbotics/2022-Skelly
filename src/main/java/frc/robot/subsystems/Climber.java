@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 import frc.robot.Constants;
 
@@ -23,7 +24,15 @@ public class Climber extends SubsystemBase {
     public void run(double speed) {
         leftMotor.set(speed);
         rightMotor.set(speed);
-        m_compressor.enableDigital();
     }
 
-}
+    public void toggleSolenoid() {
+        m_solenoid.toggle();
+    }
+
+    public void runCompressor() {
+        m_compressor.enableDigital();
+    }
+    
+
+} 
