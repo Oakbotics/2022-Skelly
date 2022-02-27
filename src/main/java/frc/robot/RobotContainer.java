@@ -7,13 +7,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commandGroups.RunIntake;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.RollIntake;
+import frc.robot.commands.RunIntake;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -46,7 +44,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_controller, 6)
-    .whenHeld(new RunIntake(m_intake));
+    .whenHeld(new RunIntake(m_intake, 1));
   }
 
   /**
