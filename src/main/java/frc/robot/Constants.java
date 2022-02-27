@@ -15,6 +15,8 @@ package frc.robot;
 public final class Constants {
 
     public static final class IntakeConstants {
-        public static final int CAN_ADDRESS_INTAKE_MOTOR = 10;
+        public static final int CAN_ADDRESS_INTAKE_MOTOR = 31;
+        public static final int PCM_ADDRESS_INTKAESOLENOID_FORWARD = 3;
+        public static final int PCM_ADDRESS_INTKAESOLENOID_REVERSE = 4;
     }
 }
