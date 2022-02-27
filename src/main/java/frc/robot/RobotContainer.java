@@ -54,7 +54,7 @@ public class RobotContainer {
     new JoystickButton(m_controller, 6)
     .whenHeld(new SpinSpark(m_climber, 0.5));
 
-    new JoystickButton(m_controller, 7)
+    new JoystickButton(m_controller, 4)
     .whenHeld(new RunSolenoid(m_climber));
     
   }

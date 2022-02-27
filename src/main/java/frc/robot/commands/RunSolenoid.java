@@ -14,7 +14,17 @@ public class RunSolenoid extends CommandBase {
     }
     
     @Override
-    public void execute(){
-        m_Climber.toggleSolenoid();
+    public void initialize() {
+        m_Climber.setSolenoidForward();
     }
+
+    @Override
+    public void end(boolean interrupted) {
+        m_Climber.setSolenoidReverse();
+    }
+
+    // @Override
+    // public void execute(){
+    //     m_Climber.toggleSolenoid();
+    // }
 }

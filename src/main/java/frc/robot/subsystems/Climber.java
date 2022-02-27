@@ -18,17 +18,28 @@ public class Climber extends SubsystemBase {
 
     private final CANSparkMax leftMotor = new CANSparkMax(Constants.ClimbConstants.CAN_ADDRESS_CLIMB_LEFT, MotorType.kBrushless);
     private final CANSparkMax rightMotor = new CANSparkMax(Constants.ClimbConstants.CAN_ADDRESS_CLIMB_RIGHT, MotorType.kBrushless);
-    private final DoubleSolenoid m_solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+    private final DoubleSolenoid climberSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
     private final Compressor m_compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+
+    public Climber() {
+    }
     
     public void run(double speed) {
         leftMotor.set(speed);
         rightMotor.set(speed);
     }
 
-    public void toggleSolenoid() {
-        m_solenoid.toggle();
+    public void setSolenoidForward() {
+        climberSolenoid.set(Value.kForward);
     }
+
+    public void setSolenoidReverse() {
+        climberSolenoid.set(Value.kReverse);
+    }
+
+    // public void toggleSolenoid() {
+    //     climberSolenoid.toggle();
+    // }
 
     public void runCompressor() {
         m_compressor.enableDigital();
