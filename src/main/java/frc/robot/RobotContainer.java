@@ -35,7 +35,7 @@ public class RobotContainer {
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
-  Joystick m_controller = new Joystick(Constants.IOConstants.CAN_ADDRESS_DRIVERCONTROLLER);
+  GenericHID m_controller = new GenericHID(Constants.IOConstants.CAN_ADDRESS_DRIVERCONTROLLER);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -45,11 +45,9 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         new Drive(
             m_robotDrive,
-            () -> m_controller.getY(),
-            () -> m_controller.getX()));
-
-    //SmartDashboard.putNumber("Start Time", );
-    //SmartDashboard.putNumber("Time Elapsed", time);
+            () -> m_controller.getRawAxis(1),
+            () -> m_controller.getRawAxis(4))
+            );
   }
 
   /**

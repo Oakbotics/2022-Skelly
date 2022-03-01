@@ -53,13 +53,6 @@ public class DriveTrain extends SubsystemBase {
         return ((leftPrimaryMotor.getSelectedSensorPosition()) + -(rightPrimaryMotor.getSelectedSensorPosition())) / 2.0;
     }
 
-    // public void goForwardInches(double distance) {
-    //     rightPrimaryMotor.set(TalonFXControlMode.Position, distance*(Constants.AutoConstants.ENCODER_TICKS_PER_INCH));
-    //     rightSecondaryMotor.set(TalonFXControlMode.Position, distance*(Constants.AutoConstants.ENCODER_TICKS_PER_INCH));
-    //     leftPrimaryMotor.set(TalonFXControlMode.Position, -(distance*(Constants.AutoConstants.ENCODER_TICKS_PER_INCH)));
-    //     leftSecondaryMotor.set(TalonFXControlMode.Position, -(distance*(Constants.AutoConstants.ENCODER_TICKS_PER_INCH)));
-    // }
-
     public void resetEncoders() {
         leftPrimaryMotor.setSelectedSensorPosition(0);
         rightPrimaryMotor.setSelectedSensorPosition(0);
