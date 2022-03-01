@@ -32,6 +32,10 @@ public class DriveTrain extends SubsystemBase {
         m_rightMotors.setInverted(true);
     }
 
+    public double getmeasurement() {
+        return getAverageEncoderDistance();
+    }
+
     public void arcadeDrive(double fwd, double rot) {
         m_drive.arcadeDrive(fwd, -rot);
     }
@@ -46,7 +50,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public double getAverageEncoderDistance() {
-        return (-(leftPrimaryMotor.getSelectedSensorPosition()) + rightPrimaryMotor.getSelectedSensorPosition()) / 2.0;
+        return ((leftPrimaryMotor.getSelectedSensorPosition()) + -(rightPrimaryMotor.getSelectedSensorPosition())) / 2.0;
     }
 
     // public void goForwardInches(double distance) {

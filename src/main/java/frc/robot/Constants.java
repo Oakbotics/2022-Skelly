@@ -17,7 +17,12 @@ public final class Constants {
         public static final int CAN_ADDRESS_LEFT_SECONDARY_MOTOR = 5;
         public static final int CAN_ADDRESS_LEFT_PRIMARY_MOTOR = 4;
         public static final int CAN_ADDRESS_RIGHT_SECONDARY_MOTOR = 3;
-        public static final int CAN_ADDRESS_RIGHT_PRIMARY_MOTOR = 2;   
+        public static final int CAN_ADDRESS_RIGHT_PRIMARY_MOTOR = 2; 
+        public static final double kP = 2;
+        public static final double kI = 0;
+        public static final double kD = 0;
+        public static final double positionTolerance = 500;
+        public static final double speedTolerance = 10;
     }
     
     public static final class IOConstants {
@@ -26,8 +31,8 @@ public final class Constants {
 
     public static final class AutoConstants {
        
-        // public static final double ENCODER_TICKS_PER_INCH = 2048 / ((Math.PI*6 )/10);
-        public static final double ENCODER_TICKS_PER_INCH = 1500; 
+        public static final double ENCODER_TICKS_PER_INCH = 2048 / ((Math.PI*6 )/10);
+        // public static final double ENCODER_TICKS_PER_INCH = 1500; 
         //                                      Encoder ticks per rotation  / inches travelled per rotation of motor
     }
 }

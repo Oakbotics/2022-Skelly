@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TimedAuto;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ResetDriveTrainEncoder;
@@ -58,7 +60,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_controller, 4)
-    .whenPressed(new DriveDistance(m_robotDrive, 120, 0.3));
+    .whenPressed(new DriveDistance(m_robotDrive, AutoConstants.ENCODER_TICKS_PER_INCH * 60));
     new JoystickButton(m_controller, 2)
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
   }

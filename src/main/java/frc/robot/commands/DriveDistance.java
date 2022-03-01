@@ -1,37 +1,45 @@
 package frc.robot.commands;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.DriveTrain;
 
 import frc.robot.Constants;
+import frc.robot.Constants.DriveConstants;
 
-public class DriveDistance extends CommandBase {
-    private final DriveTrain m_driveTrain;
-    private final double m_distance;
-    private final double speed;
+public class DriveDistance extends PIDCommand {
 
-    public DriveDistance(DriveTrain m_driveTrain, double inches, double speed) {
+    public final DriveTrain m_driveTrain;
+
+    public DriveDistance(DriveTrain m_driveTrain, double targetDistance) {
+        super(new PIDController(DriveConstants.kP, DriveConstants.kI, DriveConstants.kD),
+        m_driveTrain :: getmeasurement,
+        targetDistance,
+        output -> m_driveTrain.arcadeDrive(output, 0),
+        m_driveTrain);
+
         this.m_driveTrain = m_driveTrain;
-        this.m_distance = inches * Constants.AutoConstants.ENCODER_TICKS_PER_INCH;
-        this.speed = speed;
-        addRequirements(this.m_driveTrain);
+
+        getController().setTolerance(DriveConstants.positionTolerance, DriveConstants.speedTolerance);
+
     }
 
     @Override
     public void initialize() {
-        m_driveTrain.resetEncoders();
+        this.m_driveTrain.resetEncoders();
     }
 
-    @Override 
-    public void execute() {
-        m_driveTrain.arcadeDrive(-speed, 0);
-        m_driveTrain.getEncoders();
-    }
+    // @Override
+    // public void execute() {
+    //     this.m_driveTrain.getEncoders();
+    // }
     
     @Override
     public boolean isFinished() {
-        return Math.abs(m_driveTrain.getAverageEncoderDistance()) >= m_distance;
-  }
+      // End when the controller is at the reference.
+      return getController().atSetpoint();
+    }
+
 
 }
