@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 
@@ -17,18 +18,18 @@ public class Shooter extends SubsystemBase{
     private final CANSparkMax rightShooterMotor = new CANSparkMax(Constants.ShooterConstant.CAN_ADDRESS_RIGHT_SHOOTER_MOTOR, MotorType.kBrushless);
     private final VictorSPX kicker = new VictorSPX(Constants.ShooterConstant.CAN_ADDRESS_KICKER);
 
-    public void shoot(double speed) {
-        topConveryorMotor.set(speed);
-        bottomConveryorMotor.set(-speed);
-        leftShooterMotor.set(speed);
-        rightShooterMotor.set(-speed);
-        // kicker.
-    }
-
     public void runConveryor(double speed) {
         topConveryorMotor.set(speed);
         bottomConveryorMotor.set(-speed);
     }
 
+    public void runShooter(double speed) {
+        leftShooterMotor.set(speed);
+        rightShooterMotor.set(-speed);
+    }
+
+    public void runKicker() {
+        kicker.set(ControlMode.PercentOutput, 1);
+    }
 
 }
