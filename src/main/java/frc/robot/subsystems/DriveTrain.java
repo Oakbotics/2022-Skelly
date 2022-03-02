@@ -28,7 +28,12 @@ public class DriveTrain extends SubsystemBase {
 
     private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
+    
+    
+    
     public DriveTrain() {
+        leftPrimaryMotor.setSelectedSensorPosition(0, 0, 0);
+        rightPrimaryMotor.setSelectedSensorPosition(0, 0, 0);
         m_rightMotors.setInverted(true);
     }
 
@@ -40,6 +45,12 @@ public class DriveTrain extends SubsystemBase {
         m_leftMotors.set(-speed);
         m_rightMotors.set(speed);
     }
+
+
+    public void motionMagic(){
+        
+    }
+
 
     public void setMaxOutput(double maxOutput) {
         m_drive.setMaxOutput(maxOutput);
