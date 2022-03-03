@@ -58,7 +58,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_controller, 4)
-    .whenPressed(new DriveDistance(m_robotDrive, AutoConstants.ENCODER_TICKS_PER_INCH * 60));
+    .whenPressed(new DriveDistance(m_robotDrive, -(AutoConstants.ENCODER_TICKS_PER_INCH * 30)));
     new JoystickButton(m_controller, 2)
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
   }

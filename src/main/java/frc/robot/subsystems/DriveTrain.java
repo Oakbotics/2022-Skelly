@@ -61,7 +61,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void getEncoders() {
-        SmartDashboard.putNumber("left encoder", leftPrimaryMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("left encoder", -(leftPrimaryMotor.getSelectedSensorPosition()));
         SmartDashboard.putNumber("right encoder", rightPrimaryMotor.getSelectedSensorPosition());
     }
 }

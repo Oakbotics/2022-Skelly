@@ -1,0 +1,20 @@
+package frc.robot.commandGroups;
+
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.DriveDistance;
+import frc.robot.commands.GetEncoder;
+import frc.robot.subsystems.DriveTrain;
+
+import frc.robot.Constants.AutoConstants;
+
+public class GetEncodersWhileAuto extends ParallelCommandGroup{
+    
+    public GetEncodersWhileAuto(DriveTrain m_driveTrain) {
+        addCommands(
+            new DriveDistance(m_driveTrain, AutoConstants.ENCODER_TICKS_PER_INCH * 30),
+
+            new GetEncoder(m_driveTrain)
+        );
+
+    }
+}

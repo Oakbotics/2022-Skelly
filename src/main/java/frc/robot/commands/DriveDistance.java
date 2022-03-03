@@ -4,6 +4,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
@@ -30,10 +31,13 @@ public class DriveDistance extends PIDCommand {
         this.m_driveTrain.resetEncoders();
     }
 
-    // @Override
-    // public void execute() {
-    //     this.m_driveTrain.getEncoders();
-    // }
+    @Override
+    public void execute() {
+    m_useOutput.accept(
+        m_controller.calculate(m_measurement.getAsDouble(), m_setpoint.getAsDouble()));
+    m_driveTrain.getEncoders();
+    SmartDashboard.putNumber("output value", m_controller.calculate(m_measurement.getAsDouble(), m_setpoint.getAsDouble()));
+    }
     
     @Override
     public boolean isFinished() {
