@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.GroupMotorControllers;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
@@ -38,11 +40,19 @@ public class DriveTrain extends SubsystemBase {
 
     public void arcadeDrive(double fwd, double rot) {
         m_drive.arcadeDrive(fwd, -rot);
+        SmartDashboard.putNumber("forward value", fwd);
     }
 
     public void setSpeed(double speed) {
         m_leftMotors.set(-speed);
         m_rightMotors.set(speed);
+    }
+
+    public void voltDrive(double current) {
+        leftPrimaryMotor.set(ControlMode.Current, -current);
+        leftSecondaryMotor.set(ControlMode.Current, -current);
+        rightPrimaryMotor.set(ControlMode.Current, current);
+        rightSecondaryMotor.set(ControlMode.Current, current);
     }
 
     public void setMaxOutput(double maxOutput) {

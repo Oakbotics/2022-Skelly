@@ -17,7 +17,7 @@ public class DriveDistance extends PIDCommand {
         super(new PIDController(DriveConstants.kP, DriveConstants.kI, DriveConstants.kD),
         m_driveTrain :: getmeasurement,
         targetDistance,
-        output -> m_driveTrain.arcadeDrive(output, 0),
+        output -> m_driveTrain.arcadeDrive((output/650000), 0),
         m_driveTrain);
 
         this.m_driveTrain = m_driveTrain;
