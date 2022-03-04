@@ -17,6 +17,7 @@ import frc.robot.commands.ResetDriveTrainEncoder;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants.IOConstants;;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -57,9 +58,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_controller, 4)
+    new JoystickButton(m_controller, IOConstants.CONTROLLER_Y)
     .whenPressed(new DriveDistance(m_robotDrive, -(AutoConstants.ENCODER_TICKS_PER_INCH * 30)));
-    new JoystickButton(m_controller, 2)
+    new JoystickButton(m_controller, IOConstants.CONTROLLER_L_BUMPER)
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
   }
 
