@@ -1,13 +1,17 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-
+import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.MotionMagicConstants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.GroupMotorControllers;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
@@ -27,13 +31,12 @@ public class DriveTrain extends SubsystemBase {
     private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(rightPrimaryMotor, rightSecondaryMotor);
 
     private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
-
     
     
     
     public DriveTrain() {
-        leftPrimaryMotor.setSelectedSensorPosition(0, 0, 0);
-        rightPrimaryMotor.setSelectedSensorPosition(0, 0, 0);
+        leftPrimaryMotor.setSelectedSensorPosition(0);
+        rightPrimaryMotor.setSelectedSensorPosition(0);
         m_rightMotors.setInverted(true);
     }
 
@@ -46,11 +49,21 @@ public class DriveTrain extends SubsystemBase {
         m_rightMotors.set(speed);
     }
 
+    public void motionMagicInit(){
 
-    public void motionMagic(){
         
-    }
+        leftPrimaryMotor.selectProfileSlot(0, 0);
+        leftPrimaryMotor.config_kF(0, 0, MotionMagicConstants.TIMEOUTMS);
+        leftPrimaryMotor.config_kP(0, 0.2, MotionMagicConstants.TIMEOUTMS);
 
+        leftPrimaryMotor.configMotionCruiseVelocity(10000, MotionMagicConstants.TIMEOUTMS);
+        leftPrimaryMotor.configMotionAcceleration(2500, MotionMagicConstants.TIMEOUTMS);
+
+    }        
+  
+    public void goForwardMotionMagic(Double inches){
+        leftPrimaryMotor.set(TalonFXControlMode.MotionMagic, AutoConstants.ENCODER_TICKS_PER_INCH*inches);
+    }
 
     public void setMaxOutput(double maxOutput) {
         m_drive.setMaxOutput(maxOutput);

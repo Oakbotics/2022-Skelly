@@ -11,6 +11,8 @@ import frc.robot.commands.TimedAuto;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveDistance;
+import frc.robot.commands.MotionMagic;
+import frc.robot.commands.MotionMagic;
 import frc.robot.commands.ResetDriveTrainEncoder;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -61,6 +63,8 @@ public class RobotContainer {
     .whenPressed(new DriveDistance(m_robotDrive, 120, 0.3));
     new JoystickButton(m_controller, 2)
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
+    new JoystickButton(m_controller, 1)
+    .whenPressed(new MotionMagic(m_robotDrive, 12.0));
   }
 
   /**
