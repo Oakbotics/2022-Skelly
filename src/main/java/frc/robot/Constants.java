@@ -27,6 +27,14 @@ public final class Constants {
     
     public static final class IOConstants {
         public static final int CAN_ADDRESS_DRIVERCONTROLLER = 0;
+        public static final int CONTROLLER_A = 1;
+        public static final int CONTROLLER_B = 2;
+        public static final int CONTROLLER_X = 3;
+        public static final int CONTROLLER_Y = 4;
+        public static final int CONTROLLER_L_BUMPER = 5;
+        public static final int CONTROLLER_R_BUMPER = 6;
+        public static final int CONTROLLER_L_JOYSTICK = 9;
+        public static final int CONTROLLER_R_JOYSTICK = 10;
     }
 
     public static final class AutoConstants {
