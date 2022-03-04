@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 
-public class DriveTrain extends SubsystemBase {
+public class DriveTrainForTurn extends SubsystemBase {
 
     private final WPI_TalonFX leftSecondaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_LEFT_SECONDARY_MOTOR);
     private final WPI_TalonFX leftPrimaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_LEFT_PRIMARY_MOTOR);
@@ -30,12 +30,12 @@ public class DriveTrain extends SubsystemBase {
 
     private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
-    public DriveTrain() {
+    public DriveTrainForTurn() {
         m_rightMotors.setInverted(true);
     }
 
     public double getmeasurement() {
-        return getAverageEncoderDistance();
+        return getAverageEncoderDistanceNoReverse();
     }
 
     public void arcadeDrive(double fwd, double rot) {
@@ -57,10 +57,6 @@ public class DriveTrain extends SubsystemBase {
 
     public void setMaxOutput(double maxOutput) {
         m_drive.setMaxOutput(maxOutput);
-    }
-
-    public double getAverageEncoderDistance() {
-        return ((leftPrimaryMotor.getSelectedSensorPosition()) + -(rightPrimaryMotor.getSelectedSensorPosition())) / 2.0;
     }
 
     public void resetEncoders() {

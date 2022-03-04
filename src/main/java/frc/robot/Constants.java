@@ -21,7 +21,7 @@ public final class Constants {
         public static final double kP = 45;
         public static final double kI = 2;
         public static final double kD = 0.0625;
-        public static final double positionTolerance = 500;
+        public static final double positionTolerance = 1000;
         public static final double speedTolerance = 10;
     }
     
@@ -52,7 +52,6 @@ public final class Constants {
     public static final class AutoConstants {
        
         public static final double ENCODER_TICKS_PER_INCH = 2048 / ((Math.PI*6 )/10);
-        // public static final double ENCODER_TICKS_PER_INCH = 1500; 
-        //                                      Encoder ticks per rotation  / inches travelled per rotation of motor
+        public static final double ENCODER_TICKS_PER_DEGREE = 278;
     }
 }

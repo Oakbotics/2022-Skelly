@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TimedAuto;
+import frc.robot.commands.TurnDegrees;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainForTurn;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.Drive;
@@ -18,6 +20,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.LogitechConstants;
+import frc.robot.commandGroups.StraightThenTurn90;
 import frc.robot.Constants.DoubleShockConstants;
 
 /**
@@ -27,9 +30,10 @@ import frc.robot.Constants.DoubleShockConstants;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private final DriveTrain m_robotDrive = new DriveTrain(){
-    
-  };
+  private final DriveTrain m_robotDrive = new DriveTrain();
+
+  private final DriveTrainForTurn m_driveTrainForTurn = new DriveTrainForTurn();
+
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -48,8 +52,8 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         new Drive(
             m_robotDrive,
-            () -> m_controller1.getRawAxis(1),
-            () -> m_controller1.getRawAxis(4))
+            () -> m_controller0.getRawAxis(1),
+            () -> m_controller0.getRawAxis(4))
             );
   }
 
@@ -62,6 +66,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_Y)
     .whenPressed(new DriveDistance(m_robotDrive, -(AutoConstants.ENCODER_TICKS_PER_INCH * 30)));
+    new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_B)
+    .whenPressed(new StraightThenTurn90(m_robotDrive, m_driveTrainForTurn));
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_L_BUMPER)
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
   }
