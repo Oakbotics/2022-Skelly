@@ -17,7 +17,8 @@ import frc.robot.commands.ResetDriveTrainEncoder;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Constants.IOConstants;;
+import frc.robot.Constants.LogitechConstants;
+import frc.robot.Constants.DoubleShockConstants;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -36,7 +37,8 @@ public class RobotContainer {
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
-  GenericHID m_controller = new GenericHID(Constants.IOConstants.CAN_ADDRESS_DRIVERCONTROLLER);
+  GenericHID m_controller0 = new GenericHID(LogitechConstants.CAN_ADDRESS_LOGITECHCONTROLLER);
+  GenericHID m_controller1 = new GenericHID(DoubleShockConstants.CAN_ADDRESS_DOUBLESHOCKCONTROLLER);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -46,8 +48,8 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         new Drive(
             m_robotDrive,
-            () -> m_controller.getRawAxis(1),
-            () -> m_controller.getRawAxis(4))
+            () -> m_controller1.getRawAxis(1),
+            () -> m_controller1.getRawAxis(4))
             );
   }
 
@@ -58,9 +60,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_controller, IOConstants.CONTROLLER_Y)
+    new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_Y)
     .whenPressed(new DriveDistance(m_robotDrive, -(AutoConstants.ENCODER_TICKS_PER_INCH * 30)));
-    new JoystickButton(m_controller, IOConstants.CONTROLLER_L_BUMPER)
+    new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_L_BUMPER)
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
   }
 
