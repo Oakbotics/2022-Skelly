@@ -8,8 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commandGroups.runClimber;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.SpinSpark;
+import frc.robot.commands.runMotor;
 import frc.robot.commands.RunSolenoid;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -39,7 +40,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_climber.setDefaultCommand(
-      new SpinSpark(m_climber, 0.5));
+      new runMotor(m_climber, 0.5));
 
   }
 
@@ -52,10 +53,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     new JoystickButton(m_controller, 6)
-    .whenHeld(new SpinSpark(m_climber, 0.5));
+    .whenPressed(new runClimber(m_climber, 0.5));
 
-    new JoystickButton(m_controller, 4)
-    .whenHeld(new RunSolenoid(m_climber));
     
   }
 
