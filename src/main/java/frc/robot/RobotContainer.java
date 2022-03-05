@@ -5,18 +5,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TimedAuto;
-import frc.robot.commands.TurnDegrees;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrainForTurn;
 import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ResetDriveTrainEncoder;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.LogitechConstants;
@@ -34,8 +30,6 @@ public class RobotContainer {
 
   private final DriveTrainForTurn m_driveTrainForTurn = new DriveTrainForTurn();
 
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final Command m_autoCommand = new TimedAuto(m_robotDrive);
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
