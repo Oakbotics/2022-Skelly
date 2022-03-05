@@ -15,7 +15,7 @@ public class TurnDegrees extends PIDCommand {
         super(new PIDController(DriveConstants.kP, DriveConstants.kI, DriveConstants.kD),
         m_driveTrain :: getmeasurement,
         (targetDegrees*AutoConstants.ENCODER_TICKS_PER_DEGREE),
-        output -> m_driveTrain.arcadeDrive(0, -(output/600000)),                                                  
+        output -> m_driveTrain.arcadeDrive(0, -(output/300000)),                                                  
         m_driveTrain);
 
         this.m_driveTrain = m_driveTrain;
@@ -40,7 +40,8 @@ public class TurnDegrees extends PIDCommand {
 
     @Override
     public void end(boolean interrupted) {
-
+        m_driveTrain.setNeutralModeBrake();
+        m_driveTrain.resetEncoders();
     }
     
     @Override

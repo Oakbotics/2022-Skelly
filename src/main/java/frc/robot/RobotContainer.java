@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TimedAuto;
+import frc.robot.commands.TurnDegrees;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrainForTurn;
 import frc.robot.Constants.AutoConstants;
@@ -59,11 +60,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_Y)
-    .whenPressed(new DriveDistance(m_robotDrive, -(AutoConstants.ENCODER_TICKS_PER_INCH * 30)));
+    .whenPressed(new DriveDistance(m_robotDrive, 30));
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_B)
     .whenPressed(new StraightThenTurn90(m_robotDrive, m_driveTrainForTurn));
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_L_BUMPER)
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
+    new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_A)
+    .whenPressed(new TurnDegrees(m_driveTrainForTurn, 90));
   }
 
   /**

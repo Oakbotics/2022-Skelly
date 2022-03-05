@@ -19,6 +19,7 @@ public class Drive extends CommandBase {
     @Override
     public void initialize() {
         m_driveTrain.resetEncoders();
+        m_driveTrain.setNeutralModeBrake();
     }
 
     @Override
