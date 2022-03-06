@@ -13,8 +13,8 @@ public class RunCompressor extends CommandBase {
         addRequirements(this.m_Climber);
     }
     
-    @Override
-    public void execute(){
-        m_Climber.runCompressor();
-    }
+    // @Override
+    // public void execute(){
+    //     m_Climber.runCompressor();
+    // }
 }

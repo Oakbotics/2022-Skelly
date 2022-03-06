@@ -15,8 +15,8 @@ public class runMotor extends CommandBase {
         addRequirements(this.m_Climber);
     }
     
-    @Override
-    public void execute(){
-        m_Climber.run(this.speed);
-    }
+    // @Override
+    // public void execute(){
+    //     m_Climber.run(this.speed);
+    // }
 }
