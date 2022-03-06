@@ -14,10 +14,10 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants {
-        public static final int CAN_ADDRESS_LEFT_SECONDARY_MOTOR = 5;
-        public static final int CAN_ADDRESS_LEFT_PRIMARY_MOTOR = 4;
-        public static final int CAN_ADDRESS_RIGHT_SECONDARY_MOTOR = 3;
-        public static final int CAN_ADDRESS_RIGHT_PRIMARY_MOTOR = 2; 
+        public static final int CAN_ADDRESS_LEFT_SECONDARY_MOTOR = 3;
+        public static final int CAN_ADDRESS_LEFT_PRIMARY_MOTOR = 2;
+        public static final int CAN_ADDRESS_RIGHT_SECONDARY_MOTOR = 5;
+        public static final int CAN_ADDRESS_RIGHT_PRIMARY_MOTOR = 4; 
         public static final double kP = 45;
         public static final double kI = 2;
         public static final double kD = 0.0625;
