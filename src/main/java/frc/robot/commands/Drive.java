@@ -9,15 +9,15 @@ public class Drive extends CommandBase {
     private final DoubleSupplier m_forward;
     private final DoubleSupplier m_rotation;
 
-    public Drive (DriveTrain DriveTrain, DoubleSupplier forward, DoubleSupplier rotation) {
-        m_driveTrain = DriveTrain;
-        m_forward = forward;
-        m_rotation = rotation;
+    public Drive (DriveTrain driveTrain, DoubleSupplier forward, DoubleSupplier rotation) {
+        this.m_driveTrain = driveTrain;
+        this.m_forward = forward;
+        this.m_rotation = rotation;
         addRequirements(m_driveTrain);
     }
 
     @Override
     public void execute(){
-        m_driveTrain.arcadeDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
+        this.m_driveTrain.arcadeDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
     }
 }
