@@ -17,10 +17,10 @@ public final class Constants {
     //remember to change it to the new drivetrain later!!!!!
     
     public static final class DriveConstants {
-        public static final int CAN_ADDRESS_LEFT_SECONDARY_MOTOR = 2;
-        public static final int CAN_ADDRESS_LEFT_PRIMARY_MOTOR = 3;
-        public static final int CAN_ADDRESS_RIGHT_SECONDARY_MOTOR = 4;
-        public static final int CAN_ADDRESS_RIGHT_PRIMARY_MOTOR = 5;   
+        public static final int CAN_ADDRESS_RIGHT_FRONT_MOTOR = 2;
+        public static final int CAN_ADDRESS_RIGHT_BACK_MOTOR = 3;
+        public static final int CAN_ADDRESS_LEFT_FRONT_MOTOR = 4;
+        public static final int CAN_ADDRESS_LEFT_BACK_MOTOR = 5;   
     }
     
     public static final class IOConstants {
