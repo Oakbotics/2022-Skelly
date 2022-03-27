@@ -3,10 +3,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-public class GetEncoder extends CommandBase{
+public class GetDriveTrainEncoder extends CommandBase{
     private final DriveTrain m_driveTrain;
 
-    public GetEncoder(DriveTrain m_driveTrain) {
+    public GetDriveTrainEncoder(DriveTrain m_driveTrain) {
         this.m_driveTrain = m_driveTrain;
         addRequirements(this.m_driveTrain);
     }
