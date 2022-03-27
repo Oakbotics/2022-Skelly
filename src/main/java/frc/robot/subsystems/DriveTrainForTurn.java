@@ -35,6 +35,9 @@ public class DriveTrainForTurn extends SubsystemBase {
 
     AHRS gyro = new AHRS(SPI.Port.kMXP);
 
+    public void resetGyro(){
+        gyro.reset();
+    }
 
     public DriveTrainForTurn() {
         m_rightMotors.setInverted(true);
@@ -49,6 +52,10 @@ public class DriveTrainForTurn extends SubsystemBase {
     public void arcadeDrive(double fwd, double rot) {
         m_drive.arcadeDrive(fwd, -rot);
         SmartDashboard.putNumber("forward value", fwd);
+    }
+
+    public void tankDrive(double output){
+        m_drive.tankDrive(output, -output);
     }
 
     public void setSpeed(double speed) {
@@ -103,5 +110,8 @@ public class DriveTrainForTurn extends SubsystemBase {
         return gyro.getAngle();
     }
 
+    public void setMaxSpeed(double speed){
+        m_drive.setMaxOutput(speed);
+    }
 }
 

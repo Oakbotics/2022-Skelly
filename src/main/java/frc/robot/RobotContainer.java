@@ -13,6 +13,7 @@ import frc.robot.subsystems.DriveTrainForTurn;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveDistance;
+import frc.robot.commands.GyroTurn;
 import frc.robot.commands.ResetDriveTrainEncoder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -62,14 +63,14 @@ public class RobotContainer {
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_Y)
     .whenPressed(new DriveDistance(m_robotDrive, 30));
 
-    new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_B)
-    .whenPressed(new StraightThenTurn90(m_robotDrive, m_driveTrainForTurn));
+    /*new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_B)
+    .whenPressed(new StraightThenTurn90(m_robotDrive, m_driveTrainForTurn)); */
     
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_L_BUMPER)
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
     
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_A)
-    .whenPressed(new TurnDegrees(m_driveTrainForTurn, 90));
+    .whenPressed(new GyroTurn(m_driveTrainForTurn, 90));
   }
 
   /**

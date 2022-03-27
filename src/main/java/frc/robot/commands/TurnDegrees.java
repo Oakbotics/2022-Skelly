@@ -31,11 +31,11 @@ public class TurnDegrees extends PIDCommand {
 
     @Override
     public void execute() {
-    m_useOutput.accept(
-        m_controller.calculate(m_measurement.getAsDouble(), m_setpoint.getAsDouble()));
-    m_driveTrain.getEncoders();
-    SmartDashboard.putNumber("output value", m_controller.calculate(m_measurement.getAsDouble(), m_setpoint.getAsDouble()));
-    SmartDashboard.putNumber("degrees", (m_driveTrain.getAverageEncoderDistanceNoReverse()/AutoConstants.ENCODER_TICKS_PER_DEGREE));
+        m_useOutput.accept(
+            m_controller.calculate(m_measurement.getAsDouble(), m_setpoint.getAsDouble()));
+        m_driveTrain.getEncoders();
+        SmartDashboard.putNumber("output value", m_controller.calculate(m_measurement.getAsDouble(), m_setpoint.getAsDouble()));
+        SmartDashboard.putNumber("degrees", (m_driveTrain.getAverageEncoderDistanceNoReverse()/AutoConstants.ENCODER_TICKS_PER_DEGREE));
     }
 
     @Override
