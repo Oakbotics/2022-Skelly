@@ -31,7 +31,7 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private final Joystick m_controller = new Joystick(0);
+  private final GenericHID m_controller = new GenericHID(1);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -39,8 +39,6 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    m_climber.setDefaultCommand(
-      new runMotor(m_climber, 0.5));
 
   }
 
@@ -52,8 +50,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    new JoystickButton(m_controller, 6)
-    .whenPressed(new runClimber(m_climber, 0.5));
+    new JoystickButton(m_controller, 2)
+    .whenHeld(new runClimber(m_climber, -0.5*m_controller.getRawAxis(1)));
 
     
   }
