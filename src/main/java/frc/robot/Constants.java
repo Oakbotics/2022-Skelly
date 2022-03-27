@@ -17,8 +17,8 @@ public final class Constants {
     public static final class ShooterConstant {
         public static final int CAN_ADDRESS_TOP_CONVEYOR_MOTOR = 21; 
         public static final int CAN_ADDRESS_BOTTOM_CONVEYOR_MOTOR = 22; 
-        public static final int CAN_ADDRESS_LEFT_SHOOTER_MOTOR = 23; 
-        public static final int CAN_ADDRESS_RIGHT_SHOOTER_MOTOR = 24; 
+        public static final int CAN_ADDRESS_LEFT_SHOOTER_MOTOR = 11; 
+        public static final int CAN_ADDRESS_RIGHT_SHOOTER_MOTOR = 12; 
         public static final int CAN_ADDRESS_KICKER = 25;
 
         public static final double shooterMaxVelocity = 5200;
