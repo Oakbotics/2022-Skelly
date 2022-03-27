@@ -15,7 +15,17 @@ public class RunConveryor extends CommandBase {
     }
 
     @Override
+    public void initialize() {
+        
+    }
+
+    @Override
     public void execute() {
         this.m_Shooter.runConveryor(this.converyorSpeed);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        this.m_Shooter.runConveryor(0);
     }
 }

@@ -39,18 +39,19 @@ public class Shooter extends SubsystemBase{
     //double velocity;
 
     public void runConveryor(double speed) {
-        topConveryorMotor.set(speed);
+        topConveryorMotor.set(-speed);
         bottomConveryorMotor.set(-speed);
     }
 
     public void runShooter(double speed) {
         leftShooterMotor.set(speed);
-        rightShooterMotor.set(-speed);
+        rightShooterMotor.set(speed);
     }
 
-    public void runKicker() {
-        kicker.set(ControlMode.PercentOutput, 1);
+    public void runKicker(double speed) {
+        kicker.set(ControlMode.PercentOutput, speed);
     }
+
     
     public double getShooterVelocity()  {
         return ((leftShooterMotorEncoder.getVelocity() + -(rightShooterMotorEncoder.getVelocity())) / 2);

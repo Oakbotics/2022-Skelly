@@ -14,8 +14,15 @@ public class RunShooterAllTogether extends CommandBase{
 
     @Override
     public void execute() {
-        m_shooter.runShooter(1.0);
-        m_shooter.runKicker();
-        m_shooter.runConveryor(1);
+        m_shooter.runShooter(0.20);
+        m_shooter.runKicker(0.75);
+        m_shooter.runConveryor(0.90);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        m_shooter.runShooter(0);
+        m_shooter.runKicker(0);
+        m_shooter.runConveryor(0);
     }
 }

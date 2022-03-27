@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commandGroups.AutoRunShooter;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RunConveryor;
+import frc.robot.commands.RunShooterAllTogether;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,7 +31,7 @@ public class RobotContainer {
 
   private final Shooter m_shooter = new Shooter();
 
-  private final Joystick m_controller = new Joystick(0);
+  private final GenericHID m_controller = new GenericHID(1);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -47,10 +48,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     
-    new JoystickButton(m_controller, 7)
-    .whenHeld(new AutoRunShooter(m_shooter));
+    new JoystickButton(m_controller, 5)
+    .whenHeld(new RunShooterAllTogether(m_shooter));
     new JoystickButton(m_controller, 4)
-    .whenHeld(new RunConveryor(m_shooter, 0.5));
+    .whenHeld(new RunConveryor(m_shooter, 0.90));
 
   }
 
