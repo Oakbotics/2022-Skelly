@@ -5,14 +5,17 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.SPI;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.kauailabs.navx.frc.AHRS;
 
 
 public class DriveTrainForTurn extends SubsystemBase {
@@ -29,6 +32,10 @@ public class DriveTrainForTurn extends SubsystemBase {
 
     private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
+
+    AHRS gyro = new AHRS(SPI.Port.kMXP);
+
+
     public DriveTrainForTurn() {
         m_rightMotors.setInverted(true);
     }
@@ -36,6 +43,8 @@ public class DriveTrainForTurn extends SubsystemBase {
     public double getmeasurement() {
         return getAverageEncoderDistanceNoReverse();
     }
+
+    
 
     public void arcadeDrive(double fwd, double rot) {
         m_drive.arcadeDrive(fwd, -rot);
@@ -88,6 +97,11 @@ public class DriveTrainForTurn extends SubsystemBase {
         return ((leftPrimaryMotor.getSelectedSensorPosition()) + (rightPrimaryMotor.getSelectedSensorPosition())) / 2.0;
     }
 
+    
+
+    public double getGyro(){
+        return gyro.getAngle();
+    }
 
 }
 
