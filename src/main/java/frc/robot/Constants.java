@@ -16,8 +16,8 @@ public final class Constants {
 
     public static final class ClimbConstants {
         
-        public static final int CAN_ADDRESS_CLIMB_RIGHT = 11;
-        public static final int CAN_ADDRESS_CLIMB_LEFT = 12;
+        public static final int CAN_ADDRESS_CLIMB_RIGHT = 32;
+        public static final int CAN_ADDRESS_CLIMB_LEFT = 31;
         public static final int PNEUMATIC_CLIMBER_FORWARD = 3;
         public static final int PNEUMATIC_CLIMBER_REVERSE = 4;
     }
