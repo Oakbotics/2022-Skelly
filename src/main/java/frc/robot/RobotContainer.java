@@ -26,7 +26,7 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private final Joystick m_controller = new Joystick(0);
+  private final GenericHID m_controller = new GenericHID(1);
 
   private final Intake m_intake = new Intake();
 
