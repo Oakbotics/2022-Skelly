@@ -51,7 +51,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     new JoystickButton(m_controller, 5)
-    .whenHeld(new runClimber(m_climber, -0.5*m_controller.getRawAxis(1)));
+    .whenHeld(new runClimber(m_climber, 0.5*m_controller.getRawAxis(1)));
 
     
   }
