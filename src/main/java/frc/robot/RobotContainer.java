@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TimedAuto;
 import frc.robot.commands.TurnDegrees;
@@ -19,6 +20,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.LogitechConstants;
 import frc.robot.commandGroups.StraightThenTurn90;
 import frc.robot.Constants.DoubleShockConstants;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.RunIntake;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Intake;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,6 +35,8 @@ import frc.robot.Constants.DoubleShockConstants;
  */
 public class RobotContainer {
   private final DriveTrain m_robotDrive = new DriveTrain();
+  
+  private final Intake m_intake = new Intake();
 
   private final DriveTrainForTurn m_driveTrainForTurn = new DriveTrainForTurn();
 
@@ -38,6 +47,8 @@ public class RobotContainer {
 
   GenericHID m_controller0 = new GenericHID(LogitechConstants.CAN_ADDRESS_LOGITECHCONTROLLER);
   GenericHID m_controller1 = new GenericHID(DoubleShockConstants.CAN_ADDRESS_DOUBLESHOCKCONTROLLER);
+  
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -67,6 +78,8 @@ public class RobotContainer {
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_A)
     .whenPressed(new TurnDegrees(m_driveTrainForTurn, 90));
+    new JoystickButton(m_controller, 6)
+    .whenHeld(new RunIntake(m_intake, 1));
   }
 
   /**

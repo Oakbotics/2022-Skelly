@@ -54,5 +54,10 @@ public final class Constants {
         public static final double ENCODER_TICKS_PER_INCH = 1100;
         // 2048 / ((Math.PI*6 )/10);
         public static final double ENCODER_TICKS_PER_DEGREE = 375;
+
+    public static final class IntakeConstants {
+        public static final int CAN_ADDRESS_INTAKE_MOTOR = 41;
+        public static final int PCM_ADDRESS_INTKAESOLENOID_FORWARD = 5;
+        public static final int PCM_ADDRESS_INTKAESOLENOID_REVERSE = 4;
     }
 }
