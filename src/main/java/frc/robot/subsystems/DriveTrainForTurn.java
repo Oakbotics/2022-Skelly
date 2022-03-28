@@ -54,7 +54,7 @@ public class DriveTrainForTurn extends SubsystemBase {
         SmartDashboard.putNumber("forward value", fwd);
     }
 
-    public void tankDrive(double output){
+    public void tankDrive_Milind_Ver(double output){
         m_drive.tankDrive(output, -output);
     }
 
