@@ -47,8 +47,8 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         new Drive(
             m_robotDrive,
-            () -> m_controller0.getRawAxis(1),
-            () -> m_controller0.getRawAxis(4))
+            () -> m_controller1.getRawAxis(1),
+            () -> m_controller1.getRawAxis(4))
             );
   }
 
