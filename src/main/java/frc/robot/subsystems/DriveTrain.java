@@ -15,6 +15,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.SPI;
+
+
 
 public class DriveTrain extends SubsystemBase {
 
@@ -29,6 +32,9 @@ public class DriveTrain extends SubsystemBase {
     private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(rightPrimaryMotor, rightSecondaryMotor);
 
     private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+
+    
+    AHRS gyro = new AHRS(SPI.Port.kMXP);
 
     public DriveTrain() {
         m_rightMotors.setInverted(true);
@@ -94,7 +100,13 @@ public class DriveTrain extends SubsystemBase {
         return ((leftPrimaryMotor.getSelectedSensorPosition()) + (rightPrimaryMotor.getSelectedSensorPosition())) / 2.0;
     }
 
-    
+    public double getGyro(){
+        return gyro.getAngle();
+    }
+
+    public void resetGyro(){
+        gyro.reset();
+    }
 
 
 

@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import java.util.function.DoubleSupplier;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive extends CommandBase {
     private final DriveTrain m_driveTrain;
@@ -20,11 +21,14 @@ public class Drive extends CommandBase {
     public void initialize() {
         m_driveTrain.resetEncoders();
         m_driveTrain.setNeutralModeBrake();
+        
+        m_driveTrain.resetGyro();
     }
 
     @Override
     public void execute() {
         m_driveTrain.arcadeDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
         m_driveTrain.getEncoders();
+        SmartDashboard.putNumber("Gyro read: ", m_driveTrain.getGyro());
     }
 }

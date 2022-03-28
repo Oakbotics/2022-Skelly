@@ -54,8 +54,25 @@ public class DriveTrainForTurn extends SubsystemBase {
         SmartDashboard.putNumber("forward value", fwd);
     }
 
+    public void setSpeed_Dai_ver(double speed) {
+        leftPrimaryMotor.set(-speed);
+        leftSecondaryMotor.set(-speed);
+        rightPrimaryMotor.set(-speed);
+        rightSecondaryMotor.set(-speed);
+    }
+
     public void tankDrive_Milind_Ver(double output){
-        m_drive.tankDrive(output, -output);
+        if (output > 0.35) {
+            m_drive.tankDrive(-output, output);
+        }
+        else if(output > 0) {
+            m_drive.tankDrive(-0.4, 0.4);
+        }
+        else {
+            m_drive.tankDrive(0, 0);
+        }
+
+
     }
 
     public void setSpeed(double speed) {
