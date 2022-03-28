@@ -6,23 +6,27 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.TimedAuto;
-import frc.robot.commands.TurnDegrees;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrainForTurn;
-import frc.robot.commands.Drive;
-import frc.robot.commands.DriveDistance;
-import frc.robot.commands.ResetDriveTrainEncoder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+// constants 
 import frc.robot.Constants.LogitechConstants;
-import frc.robot.commandGroups.StraightThenTurn90;
 import frc.robot.Constants.DoubleShockConstants;
+// subsystems
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainForTurn;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
+//commands
+import frc.robot.commands.TimedAuto;
+import frc.robot.commands.TurnDegrees;
+import frc.robot.commands.DriveDistance;
+import frc.robot.commands.ResetDriveTrainEncoder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunConveryor;
 import frc.robot.commands.RunShooterAllTogether;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
+//commandgroups
+import frc.robot.commandGroups.Default;
+import frc.robot.commandGroups.StraightThenTurn90;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -53,11 +57,8 @@ public class RobotContainer {
 
     
     m_robotDrive.setDefaultCommand(
-        new Drive(
-            m_robotDrive,
-            () -> driveController.getRawAxis(1),
-            () -> driveController.getRawAxis(4))
-            );
+        new Default(m_robotDrive, driveController, opController)
+        );
   }
 
   /**
@@ -85,7 +86,7 @@ public class RobotContainer {
 
     new JoystickButton(opController, 5)
     .whenHeld(new RunShooterAllTogether(m_shooter));
-    
+
     new JoystickButton(opController, 4)
     .whenHeld(new RunConveryor(m_shooter, 0.90));
 
