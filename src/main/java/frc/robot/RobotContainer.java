@@ -22,10 +22,16 @@ import frc.robot.commandGroups.StraightThenTurn90;
 import frc.robot.Constants.DoubleShockConstants;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RunIntake;
+import frc.robot.commandGroups.AutoRunShooter;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.RunConveryor;
+import frc.robot.commands.RunShooterAllTogether;
+import frc.robot.commands.Shoot;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.subsystems.Shooter;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -48,6 +54,10 @@ public class RobotContainer {
   GenericHID m_controller0 = new GenericHID(LogitechConstants.CAN_ADDRESS_LOGITECHCONTROLLER);
   GenericHID m_controller1 = new GenericHID(DoubleShockConstants.CAN_ADDRESS_DOUBLESHOCKCONTROLLER);
   
+
+  private final Shooter m_shooter = new Shooter();
+
+  private final GenericHID m_controller = new GenericHID(1);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -80,6 +90,12 @@ public class RobotContainer {
     .whenPressed(new TurnDegrees(m_driveTrainForTurn, 90));
     new JoystickButton(m_controller, 6)
     .whenHeld(new RunIntake(m_intake, 1));
+    
+    new JoystickButton(m_controller, 5)
+    .whenHeld(new RunShooterAllTogether(m_shooter));
+    new JoystickButton(m_controller, 4)
+    .whenHeld(new RunConveryor(m_shooter, 0.90));
+
   }
 
   /**

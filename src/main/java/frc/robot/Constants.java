@@ -54,10 +54,21 @@ public final class Constants {
         public static final double ENCODER_TICKS_PER_INCH = 1100;
         // 2048 / ((Math.PI*6 )/10);
         public static final double ENCODER_TICKS_PER_DEGREE = 375;
+    }
 
     public static final class IntakeConstants {
         public static final int CAN_ADDRESS_INTAKE_MOTOR = 41;
         public static final int PCM_ADDRESS_INTKAESOLENOID_FORWARD = 5;
         public static final int PCM_ADDRESS_INTKAESOLENOID_REVERSE = 4;
+    }
+
+    public static final class ShooterConstant {
+        public static final int CAN_ADDRESS_TOP_CONVEYOR_MOTOR = 21; 
+        public static final int CAN_ADDRESS_BOTTOM_CONVEYOR_MOTOR = 22; 
+        public static final int CAN_ADDRESS_LEFT_SHOOTER_MOTOR = 11; 
+        public static final int CAN_ADDRESS_RIGHT_SHOOTER_MOTOR = 12; 
+        public static final int CAN_ADDRESS_KICKER = 51;
+
+        public static final double shooterMaxVelocity = 5200;
     }
 }
