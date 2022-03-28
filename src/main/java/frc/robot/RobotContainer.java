@@ -35,19 +35,19 @@ import frc.robot.commandGroups.StraightThenTurn90;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
+  //subsystems
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final DriveTrainForTurn m_driveTrainForTurn = new DriveTrainForTurn();
-  
   private final Intake m_intake = new Intake();
-  
   private final Shooter m_shooter = new Shooter();
 
-
-  private final Command m_autoCommand = new TimedAuto(m_robotDrive);
-
+  //controllers
   GenericHID opController = new GenericHID(LogitechConstants.CAN_ADDRESS_LOGITECHCONTROLLER);
   GenericHID driveController = new GenericHID(DoubleShockConstants.CAN_ADDRESS_DOUBLESHOCKCONTROLLER);
   
+  //autocommand
+  private final Command m_autoCommand = new TimedAuto(m_robotDrive);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -69,25 +69,23 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    new JoystickButton(opController, LogitechConstants.CONTROLLER_Y)
-    .whenPressed(new DriveDistance(m_robotDrive, 30));
+    // new JoystickButton(opController, LogitechConstants.CONTROLLER_Y)
+    // .whenPressed(new DriveDistance(m_robotDrive, 30));
 
+    // new JoystickButton(opController, LogitechConstants.CONTROLLER_B)
+    // .whenPressed(new StraightThenTurn90(m_robotDrive, m_driveTrainForTurn));
+
+    // new JoystickButton(opController, LogitechConstants.CONTROLLER_A)
+    // .whenPressed(new TurnDegrees(m_driveTrainForTurn, 90));
+
+    //Intake Command
     new JoystickButton(opController, LogitechConstants.CONTROLLER_B)
-    .whenPressed(new StraightThenTurn90(m_robotDrive, m_driveTrainForTurn));
-
-    new JoystickButton(opController, LogitechConstants.CONTROLLER_L_BUMPER)
-    .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
-
-    new JoystickButton(opController, LogitechConstants.CONTROLLER_A)
-    .whenPressed(new TurnDegrees(m_driveTrainForTurn, 90));
-
-    new JoystickButton(opController, 6)
-    .whenHeld(new RunIntake(m_intake, 1));
-
-    new JoystickButton(opController, 5)
+    .whenHeld(new RunIntake(m_intake, 0.6));
+    //Run Entire Shooter System Command
+    new JoystickButton(opController, LogitechConstants.CONTROLLER_R_BUMPER)
     .whenHeld(new RunShooterAllTogether(m_shooter));
-
-    new JoystickButton(opController, 4)
+    //Run Just Conveyor Command
+    new JoystickButton(opController, LogitechConstants.CONTROLLER_A)
     .whenHeld(new RunConveryor(m_shooter, 0.90));
 
   }

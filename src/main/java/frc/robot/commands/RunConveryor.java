@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
 public class RunConveryor extends CommandBase {
-    private final Shooter m_Shooter;
+    private final Shooter m_shooter;
     private final double converyorSpeed;
 
-    public RunConveryor(Shooter m_Shooter, double speed) {
-        this.m_Shooter = m_Shooter;
+    public RunConveryor(Shooter m_shooter, double speed) {
+        this.m_shooter = m_shooter;
         this.converyorSpeed = speed;
-        addRequirements(m_Shooter);
+        addRequirements(m_shooter);
     }
 
     @Override
@@ -21,11 +21,11 @@ public class RunConveryor extends CommandBase {
 
     @Override
     public void execute() {
-        this.m_Shooter.runConveryor(this.converyorSpeed);
+        this.m_shooter.runConveryor(this.converyorSpeed);
     }
 
     @Override
     public void end(boolean interrupted) {
-        this.m_Shooter.runConveryor(0);
+        this.m_shooter.runConveryor(0);
     }
 }
