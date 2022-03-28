@@ -14,12 +14,12 @@ public class Drive extends CommandBase {
         m_forward = forward;
         m_rotation = rotation;
         addRequirements(m_driveTrain);
+        m_driveTrain.setNeutralModeBrake();
     }
 
     @Override
     public void initialize() {
         m_driveTrain.resetEncoders();
-        m_driveTrain.setNeutralModeBrake();
     }
 
     @Override

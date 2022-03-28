@@ -37,7 +37,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double fwd, double rot) {
-        m_drive.arcadeDrive(fwd, -0.65*(rot));
+        m_drive.arcadeDrive(-fwd, -0.80*(rot));
         SmartDashboard.putNumber("forward value", fwd);
     }
 
@@ -48,7 +48,7 @@ public class DriveTrain extends SubsystemBase {
         rightSecondaryMotor.setNeutralMode(NeutralMode.Brake);
     }
 
-    public void setNeutralmodeNoCoast() {
+    public void setNeutralmodeCoast() {
         leftPrimaryMotor.setNeutralMode(NeutralMode.Coast);
         leftSecondaryMotor.setNeutralMode(NeutralMode.Coast);
         rightPrimaryMotor.setNeutralMode(NeutralMode.Coast);
