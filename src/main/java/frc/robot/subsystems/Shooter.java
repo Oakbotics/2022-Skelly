@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
@@ -34,9 +35,9 @@ public class Shooter extends SubsystemBase{
     private final RelativeEncoder leftShooterMotorEncoder = leftShooterMotor.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     private final RelativeEncoder rightShooterMotorEncoder = rightShooterMotor.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     
-
-    //double final maxRPM = 5700;
-    //double velocity;
+    public Shooter() {
+        kicker.setNeutralMode(NeutralMode.Brake);
+    }
 
     public void runConveryor(double speed) {
         topConveryorMotor.set(-speed);
