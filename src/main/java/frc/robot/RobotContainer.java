@@ -26,6 +26,7 @@ import frc.robot.commands.RunConveryor;
 import frc.robot.commands.RunShooterAllTogether;
 //commandgroups
 import frc.robot.commandGroups.Default;
+import frc.robot.commandGroups.RunIntakeAndConveyor;
 import frc.robot.commandGroups.StraightThenTurn90;
 
 /**
@@ -80,7 +81,7 @@ public class RobotContainer {
 
     //Intake Command
     new JoystickButton(opController, LogitechConstants.CONTROLLER_B)
-    .whenHeld(new RunIntake(m_intake, 0.6));
+    .whenHeld(new RunIntakeAndConveyor(m_intake, m_shooter));
     //Run Entire Shooter System Command
     new JoystickButton(opController, LogitechConstants.CONTROLLER_R_BUMPER)
     .whenHeld(new RunShooterAllTogether(m_shooter));
