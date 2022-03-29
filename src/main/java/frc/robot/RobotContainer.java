@@ -31,14 +31,16 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private final GenericHID m_controller = new GenericHID(1);
+  private final GenericHID m_controller = new GenericHID(0);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    configureButtonBindings();
-
+    configureButtonBindings(
+      
+    );
+    
 
   }
 
@@ -50,9 +52,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    new JoystickButton(m_controller, 5)
-    .whenHeld(new RunClimber(m_climber, 0.5*m_controller.getRawAxis(1)));
-
+    new JoystickButton(m_controller, 1)
+    .whenHeld(new RunSolenoid(m_climber));
     
   }
 
