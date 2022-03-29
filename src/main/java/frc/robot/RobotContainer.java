@@ -37,10 +37,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    configureButtonBindings(
-      
-    );
-    
+    configureButtonBindings();
+    m_climber.setDefaultCommand(new RunClimber(m_climber, 0.8*m_controller.getRawAxis(1)));
 
   }
 

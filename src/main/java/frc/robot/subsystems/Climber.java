@@ -28,6 +28,8 @@ public class Climber extends SubsystemBase {
         rightMotor.set(speed);
     }
 
+    
+
     public void setSolenoidForward() {
         climberSolenoid.set(Value.kForward);
     }
