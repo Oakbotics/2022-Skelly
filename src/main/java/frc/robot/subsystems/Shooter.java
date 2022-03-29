@@ -53,6 +53,6 @@ public class Shooter extends SubsystemBase{
 
     
     public double getShooterVelocity()  {
-        return ((leftShooterMotorEncoder.getVelocity() + -(rightShooterMotorEncoder.getVelocity())) / 2);
+        return ((leftShooterMotorEncoder.getVelocity() + (rightShooterMotorEncoder.getVelocity())) / 2);
     }
 }

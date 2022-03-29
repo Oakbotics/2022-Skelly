@@ -18,12 +18,14 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 //commands
 import frc.robot.commands.TimedAuto;
+import frc.robot.commands.Drive;
 import frc.robot.commands.TurnDegrees;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ResetDriveTrainEncoder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunConveryor;
 import frc.robot.commands.RunShooterAllTogether;
+import frc.robot.commandGroups.AutoRunShooter;
 //commandgroups
 import frc.robot.commandGroups.Default;
 import frc.robot.commandGroups.RunIntakeAndConveyor;
@@ -58,8 +60,8 @@ public class RobotContainer {
 
     
     m_robotDrive.setDefaultCommand(
-        new Default(m_robotDrive, driveController, opController)
-        );
+      new Drive(m_robotDrive,() -> opController.getRawAxis(1),() -> opController.getRawAxis(4))
+      );
   }
 
   /**
@@ -84,7 +86,7 @@ public class RobotContainer {
     .whenHeld(new RunIntakeAndConveyor(m_intake, m_shooter));
     //Run Entire Shooter System Command
     new JoystickButton(opController, LogitechConstants.CONTROLLER_R_BUMPER)
-    .whenHeld(new RunShooterAllTogether(m_shooter));
+    .whenHeld(new AutoRunShooter(m_shooter));
     //Run Just Conveyor Command
     new JoystickButton(opController, LogitechConstants.CONTROLLER_A)
     .whenHeld(new RunConveryor(m_shooter, 0.90));

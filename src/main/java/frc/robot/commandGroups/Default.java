@@ -11,7 +11,7 @@ import frc.robot.commands.Drive;
 public class Default extends ParallelCommandGroup{
     public Default(DriveTrain m_robotDrive, GenericHID driveController, GenericHID opController) {
         addCommands(
-            new Drive(m_robotDrive,() -> driveController.getRawAxis(1),() -> driveController.getRawAxis(4))
+            new Drive(m_robotDrive,() -> opController.getRawAxis(1),() -> opController.getRawAxis(4))
 
         );
     }

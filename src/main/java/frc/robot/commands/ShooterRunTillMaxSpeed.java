@@ -16,16 +16,21 @@ public class ShooterRunTillMaxSpeed extends CommandBase{
 
     @Override
     public void initialize() {
+        
+    }
+
+    @Override
+    public void execute() {
         m_shooter.runShooter(1);
     }
 
     @Override
     public void end(boolean interrupted) {
-        
+        m_shooter.runShooter(0.3);
     }
 
     @Override
     public boolean isFinished() {
-        return (m_shooter.getShooterVelocity() > ShooterConstant.shooterMaxVelocity);
+        return (m_shooter.getShooterVelocity() >= ShooterConstant.shooterMaxVelocity);
     }
 }
