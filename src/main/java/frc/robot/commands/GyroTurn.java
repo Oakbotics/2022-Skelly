@@ -34,6 +34,8 @@ public class GyroTurn extends PIDCommand{
 
     }
 
+
+
     @Override
     public void execute()
     {
@@ -43,6 +45,11 @@ public class GyroTurn extends PIDCommand{
         SmartDashboard.putNumber("Gyro read: ", m_driveTrain.getGyro());
         
     }  
+
+    @Override
+    public boolean isFinished() {
+        return m_pidController.atSetpoint();
+    }
 
 
     
