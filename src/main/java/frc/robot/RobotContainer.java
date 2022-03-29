@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commandGroups.runClimber;
+import frc.robot.commandGroups.RunClimberAndSolenoid;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.runMotor;
+import frc.robot.commands.RunClimber;
 import frc.robot.commands.RunSolenoid;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -51,7 +51,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     new JoystickButton(m_controller, 5)
-    .whenHeld(new runClimber(m_climber, 0.5*m_controller.getRawAxis(1)));
+    .whenHeld(new RunClimber(m_climber, 0.5*m_controller.getRawAxis(1)));
 
     
   }
