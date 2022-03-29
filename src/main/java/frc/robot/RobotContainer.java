@@ -18,14 +18,9 @@ import frc.robot.subsystems.Shooter;
 //commands
 import frc.robot.commands.TimedAuto;
 import frc.robot.commands.Drive;
-import frc.robot.commands.DriveDistance;
-import frc.robot.commands.ResetDriveTrainEncoder;
-import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunConveryor;
-import frc.robot.commands.RunShooterAllTogether;
 import frc.robot.commandGroups.AutoRunShooter;
 //commandgroups
-import frc.robot.commandGroups.Default;
 import frc.robot.commandGroups.RunIntakeAndConveyor;
 
 /**
