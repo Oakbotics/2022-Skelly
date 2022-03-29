@@ -13,13 +13,11 @@ import frc.robot.Constants.LogitechConstants;
 import frc.robot.Constants.DoubleShockConstants;
 // subsystems
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrainForTurn;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 //commands
 import frc.robot.commands.TimedAuto;
 import frc.robot.commands.Drive;
-import frc.robot.commands.TurnDegrees;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ResetDriveTrainEncoder;
 import frc.robot.commands.RunIntake;
@@ -29,7 +27,6 @@ import frc.robot.commandGroups.AutoRunShooter;
 //commandgroups
 import frc.robot.commandGroups.Default;
 import frc.robot.commandGroups.RunIntakeAndConveyor;
-import frc.robot.commandGroups.StraightThenTurn90;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -41,7 +38,6 @@ public class RobotContainer {
 
   //subsystems
   private final DriveTrain m_robotDrive = new DriveTrain();
-  private final DriveTrainForTurn m_driveTrainForTurn = new DriveTrainForTurn();
   private final Intake m_intake = new Intake();
   private final Shooter m_shooter = new Shooter();
 
