@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TimedAuto;
@@ -31,6 +32,8 @@ public class RobotContainer {
   private final DriveTrain m_robotDrive = new DriveTrain();
 
   private final DriveTrainForTurn m_driveTrainForTurn = new DriveTrainForTurn();
+
+  private final PIDController m_pidController = new PIDController(0.005, 0.005, 0);
 
 
   private final Command m_autoCommand = new TimedAuto(m_robotDrive);
@@ -70,7 +73,16 @@ public class RobotContainer {
     .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
     
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_A)
-    .whenPressed(new GyroTurn(m_driveTrainForTurn, 90));
+    .whenPressed(new GyroTurn(m_driveTrainForTurn, m_pidController, 90));
+
+    new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_R_BUMPER)
+    .whileHeld(
+      new Drive(
+            m_robotDrive,
+            () -> m_controller0.getRawAxis(1)*0.1,
+            () -> m_controller0.getRawAxis(4)*0.1
+            )
+    );
   }
 
   /**

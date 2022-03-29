@@ -10,18 +10,20 @@ import frc.robot.subsystems.DriveTrainForTurn;
 public class GyroTurn extends PIDCommand{
 
     public final DriveTrainForTurn m_driveTrain;
+    public final PIDController m_pidController;
     
     
-    public GyroTurn(DriveTrainForTurn m_driveTrain, double targetDegrees) {
-        super(new PIDController(0.005, 0.005, 0),
+    public GyroTurn(DriveTrainForTurn m_driveTrain, PIDController m_pidController, double targetDegrees) {
+        super(m_pidController,
         m_driveTrain :: getGyro,
         (targetDegrees),
         output -> m_driveTrain.setSpeed_Dai_ver(output),                                                  
         m_driveTrain);
-        
+        this.m_pidController = m_pidController;
         this.m_driveTrain = m_driveTrain;
 
         m_driveTrain.setMaxSpeed(0.4);
+        m_pidController.setTolerance(0.5, 0);
     }
 
 

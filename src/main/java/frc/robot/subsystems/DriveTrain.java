@@ -46,7 +46,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double fwd, double rot) {
-        m_drive.arcadeDrive(fwd, -0.65*(rot));
+        m_drive.arcadeDrive(-fwd, -0.8*(rot));
         SmartDashboard.putNumber("forward value", fwd);
     }
 
