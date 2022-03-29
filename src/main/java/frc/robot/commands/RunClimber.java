@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Climber;
 
+import frc.robot.Constants.ClimbConstants;
+
 
 
 public class RunClimber extends CommandBase {
@@ -19,6 +21,16 @@ public class RunClimber extends CommandBase {
     @Override
     public void execute(){
         m_Climber.run(this.speed);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        m_Climber.run(0);
+    }
+
+    @Override
+    public boolean isFinished(){
+        return m_Climber.getMotorPosition() > ClimbConstants.CLIMBER_LIMIT;
     }
 
 }

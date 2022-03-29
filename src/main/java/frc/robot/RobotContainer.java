@@ -38,7 +38,6 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_climber.setDefaultCommand(new RunClimber(m_climber, 0.8*m_controller.getRawAxis(1)));
 
   }
 
@@ -51,7 +50,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     new JoystickButton(m_controller, 1)
-    .whenHeld(new RunSolenoid(m_climber));
+    .whenHeld(new RunClimber(m_climber, 0.3));
     
   }
 
