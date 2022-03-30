@@ -11,29 +11,29 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class RunLeftClimberUp extends CommandBase {
-    private final ClimberL m_Climber;
+    private final ClimberL m_climber;
     private final double speed;
 
-    public RunLeftClimberUp(ClimberL m_Climber, double speed) {
-        this.m_Climber = m_Climber;
+    public RunLeftClimberUp(ClimberL m_climber, double speed) {
+        this.m_climber = m_climber;
         this.speed = speed;
-        addRequirements(this.m_Climber);
+        addRequirements(this.m_climber);
     }
     
     @Override
     public void execute(){
-        m_Climber.runLeft(this.speed);
-        SmartDashboard.putNumber("left", m_Climber.getLeftPosition());
+        m_climber.runLeft(this.speed);
+        SmartDashboard.putNumber("left", m_climber.getLeftPosition());
     }
 
     @Override
     public void end(boolean interrupted) {
-        m_Climber.runLeft(0);
+        m_climber.runLeft(0);
     }
 
     @Override
     public boolean isFinished(){
-        return m_Climber.getLeftMotorPosition() > ClimbConstants.CLIMBER_LIMIT_Left;
+        return m_climber.getLeftMotorPosition() > ClimbConstants.CLIMBER_LIMIT_Left;
     }
 
 }
