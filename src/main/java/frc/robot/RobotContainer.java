@@ -8,14 +8,18 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commandGroups.ExtendClimb;
+import frc.robot.commandGroups.RetractClimb;
 import frc.robot.commandGroups.RunClimberAndSolenoid;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.RunClimber;
+import frc.robot.commands.RunLeftClimberUp;
 import frc.robot.commands.RunSolenoid;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ClimberL;
+import frc.robot.subsystems.ClimberR;
+import frc.robot.commands.RunRightClimberUp;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,7 +31,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final Climber m_climber = new Climber();
+  private final ClimberL m_climberL = new ClimberL();
+  private final ClimberR m_climberR = new ClimberR();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -50,7 +55,13 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     new JoystickButton(m_controller, 1)
-    .whenHeld(new RunClimber(m_climber, 0.3));
+    .whenHeld(new ExtendClimb(m_climberL, m_climberR));
+
+    new JoystickButton(m_controller, 2)
+    .whenHeld(new RetractClimb(m_climberL, m_climberR));
+
+    new JoystickButton(m_controller, 6)
+    .whenHeld(new RunSolenoid(m_climberL));
     
   }
 

@@ -21,6 +21,6 @@ public final class Constants {
         public static final int PNEUMATIC_CLIMBER_FORWARD = 3;
         public static final int PNEUMATIC_CLIMBER_REVERSE = 4;
 
-        public static final double CLIMBER_LIMIT = 30000;
+        public static final double CLIMBER_LIMIT = 80;
     }
 }

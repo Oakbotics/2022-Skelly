@@ -18,26 +18,28 @@ import frc.robot.Constants;
 
 
 
-public class Climber extends SubsystemBase {
+public class ClimberL extends SubsystemBase {
 
     private final CANSparkMax leftMotor = new CANSparkMax(Constants.ClimbConstants.CAN_ADDRESS_CLIMB_LEFT, MotorType.kBrushless);
-    private final CANSparkMax rightMotor = new CANSparkMax(Constants.ClimbConstants.CAN_ADDRESS_CLIMB_RIGHT, MotorType.kBrushless);
-    private final RelativeEncoder leftEncoder = leftMotor.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 1);
-    private final RelativeEncoder rightEncoder = rightMotor.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 1);
+    private final RelativeEncoder leftEncoder = leftMotor.getEncoder();  
     private final DoubleSolenoid climberSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
 
-    public Climber() {
+    public ClimberL() {
         leftMotor.setIdleMode(IdleMode.kBrake);
-        rightMotor.setIdleMode(IdleMode.kBrake);
+        leftMotor.setInverted(false);
+        leftEncoder.setPosition(0);
     }
     
-    public void run(double speed) {
-        leftMotor.set(-speed);
-        rightMotor.set(speed);
+    public void runLeft(double speed) {
+        leftMotor.set(speed);
     }
 
-    public double getMotorPosition() {
-        return ((leftEncoder.getPosition() + rightEncoder.getPosition()) / 2);
+    public double getLeftMotorPosition() {
+        return leftEncoder.getPosition();
+    }
+
+    public double getLeftPosition() {
+        return leftEncoder.getPosition();
     }
 
     public void setSolenoidForward() {
@@ -47,14 +49,5 @@ public class Climber extends SubsystemBase {
     public void setSolenoidReverse() {
         climberSolenoid.set(Value.kReverse);
     }
-
-    // public void toggleSolenoid() {
-    //     climberSolenoid.toggle();
-    // }
-
-    // public void runCompressor() {
-    //     m_compressor.enableDigital();
-    // }
-    
 
 } 

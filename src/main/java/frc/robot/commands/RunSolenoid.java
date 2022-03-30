@@ -2,13 +2,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ClimberL;
 
 
 public class RunSolenoid extends CommandBase {
-    private final Climber m_Climber;
+    private final ClimberL m_Climber;
 
-    public RunSolenoid(Climber m_Climber) {
+    public RunSolenoid(ClimberL m_Climber) {
         this.m_Climber = m_Climber;
         addRequirements(this.m_Climber);
     }
@@ -23,8 +23,4 @@ public class RunSolenoid extends CommandBase {
         m_Climber.setSolenoidReverse();
     }
 
-    // @Override
-    // public void execute(){
-    //     m_Climber.toggleSolenoid();
-    // }
 }
