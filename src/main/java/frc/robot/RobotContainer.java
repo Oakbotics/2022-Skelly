@@ -65,7 +65,7 @@ public class RobotContainer {
     .whenHeld(new RunSolenoid(m_climberL));
     
     new JoystickButton(m_controller, 4)
-    .whenHeld(new RunRightClimberDown(m_climberR, -0.01));
+    .whenHeld(new RunRightClimberUp(m_climberR, -0.05));
 
   }
 

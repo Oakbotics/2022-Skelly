@@ -50,4 +50,8 @@ public class ClimberL extends SubsystemBase {
         climberSolenoid.set(Value.kReverse);
     }
 
+    public void solenoidToggle() {
+        climberSolenoid.toggle();
+    }
+
 } 

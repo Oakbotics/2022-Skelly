@@ -29,7 +29,7 @@ public class RunRightClimberDown extends CommandBase{
 
     @Override
     public boolean isFinished(){
-        return m_Climber.getRightMotorPosition() < 2;
+        return m_Climber.getRightMotorPosition() < 0;
     }
 
 }
