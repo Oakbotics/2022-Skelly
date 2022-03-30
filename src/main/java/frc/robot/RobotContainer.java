@@ -13,6 +13,7 @@ import frc.robot.commandGroups.RetractClimb;
 import frc.robot.commandGroups.RunClimberAndSolenoid;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RunLeftClimberUp;
+import frc.robot.commands.RunRightClimberDown;
 import frc.robot.commands.RunSolenoid;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -63,6 +64,9 @@ public class RobotContainer {
     new JoystickButton(m_controller, 6)
     .whenHeld(new RunSolenoid(m_climberL));
     
+    new JoystickButton(m_controller, 4)
+    .whenHeld(new RunRightClimberDown(m_climberR, -0.01));
+
   }
 
   /**
