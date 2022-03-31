@@ -63,7 +63,7 @@ public class RobotContainer {
 
     
     m_robotDrive.setDefaultCommand(
-      new Drive(m_robotDrive,() -> opController.getRawAxis(1),() -> opController.getRawAxis(4))
+      new Drive(m_robotDrive,() -> driveController.getRawAxis(1),() -> driveController.getRawAxis(4))
       );
     m_climberP.setDefaultCommand(new SolenoidInitialize(m_climberP));
   }
@@ -80,10 +80,10 @@ public class RobotContainer {
     new JoystickButton(driveController, LogitechConstants.CONTROLLER_L_BUMPER)
     .whenHeld(new RunIntakeAndConveyor(m_intake, m_shooter));
     //Run Entire Shooter System Command
-    new JoystickButton(driveController, LogitechConstants.CONTROLLER_R_BUMPER)
+    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_SQUARE)
     .whenHeld(new AutoRunShooter(m_shooter));
     //Run Just Conveyor Command
-    new JoystickButton(driveController, LogitechConstants.CONTROLLER_B)
+    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_TRIANGLE)
     .whenHeld(new RunConveryor(m_shooter, 0.90));
     //Extends Climber
     new JoystickButton(opController, DoubleShockConstants.CONTROLLER_CIRCLE)
