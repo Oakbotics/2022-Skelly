@@ -16,12 +16,13 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 //commands
-import frc.robot.commands.TimedAuto;
+import frc.robot.commands.TimedDrive;
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunConveryor;
 import frc.robot.commandGroups.AutoRunShooter;
 //commandgroups
 import frc.robot.commandGroups.RunIntakeAndConveyor;
+import frc.robot.commandGroups.TimedAuto;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -41,8 +42,7 @@ public class RobotContainer {
   GenericHID driveController = new GenericHID(DoubleShockConstants.CAN_ADDRESS_DOUBLESHOCKCONTROLLER);
   
   //autocommand
-  private final Command m_autoCommand = new TimedAuto(m_robotDrive);
-
+  private final Command m_autoCommand = new TimedAuto(m_robotDrive, m_shooter);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
