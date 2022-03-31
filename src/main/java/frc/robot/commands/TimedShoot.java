@@ -39,6 +39,6 @@ public class TimedShoot extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        return time - startTime > 2;
+        return time - startTime > 5;
     }
 }
