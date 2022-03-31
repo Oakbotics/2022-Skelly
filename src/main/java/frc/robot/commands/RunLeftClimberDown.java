@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.ClimberL;
 
-import frc.robot.Constants.ClimbConstants;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -33,7 +31,7 @@ public class RunLeftClimberDown extends CommandBase {
 
     @Override
     public boolean isFinished(){
-        return m_climber.getLeftMotorPosition() < 0;
+        return m_climber.getLeftMotorPosition() <= 0;
     }
 
 }

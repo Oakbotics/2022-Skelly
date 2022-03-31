@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -17,7 +16,6 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 //commands
-import frc.robot.commands.TimedDrive;
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunConveryor;
 import frc.robot.commandGroups.AutoRunShooter;
@@ -26,17 +24,13 @@ import frc.robot.commandGroups.RunIntakeAndConveyor;
 import frc.robot.commandGroups.TimedAuto;
 import frc.robot.commandGroups.ExtendClimb;
 import frc.robot.commandGroups.RetractClimb;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.SolenoidForward;
 import frc.robot.commands.SolenoidInitialize;
 import frc.robot.commands.SolenoidReverse;
-import frc.robot.subsystems.ExampleSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.subsystems.ClimberL;
 import frc.robot.subsystems.ClimberPeumatics;
 import frc.robot.subsystems.ClimberR;
-import frc.robot.commands.RunRightClimberUp;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -52,16 +46,14 @@ public class RobotContainer {
   private final Shooter m_shooter = new Shooter();
 
   //controllers
-  GenericHID opController = new GenericHID(LogitechConstants.CAN_ADDRESS_LOGITECHCONTROLLER);
-  GenericHID driveController = new GenericHID(DoubleShockConstants.CAN_ADDRESS_DOUBLESHOCKCONTROLLER);
+  GenericHID opController = new GenericHID(DoubleShockConstants.CAN_ADDRESS_DOUBLESHOCKCONTROLLER);
+  GenericHID driveController = new GenericHID(LogitechConstants.CAN_ADDRESS_LOGITECHCONTROLLER);
   
   //autocommand
   private final Command m_autoCommand = new TimedAuto(m_robotDrive, m_shooter);
   private final ClimberL m_climberL = new ClimberL();
   private final ClimberR m_climberR = new ClimberR();
   private final ClimberPeumatics m_climberP = new ClimberPeumatics();
-
-  private final GenericHID m_controller = new GenericHID(0);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -85,24 +77,25 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     //Intake Command
-    new JoystickButton(opController, LogitechConstants.CONTROLLER_B)
+    new JoystickButton(driveController, LogitechConstants.CONTROLLER_L_BUMPER)
     .whenHeld(new RunIntakeAndConveyor(m_intake, m_shooter));
     //Run Entire Shooter System Command
-    new JoystickButton(opController, LogitechConstants.CONTROLLER_R_BUMPER)
+    new JoystickButton(driveController, LogitechConstants.CONTROLLER_R_BUMPER)
     .whenHeld(new AutoRunShooter(m_shooter));
     //Run Just Conveyor Command
-    new JoystickButton(opController, LogitechConstants.CONTROLLER_A)
+    new JoystickButton(driveController, LogitechConstants.CONTROLLER_B)
     .whenHeld(new RunConveryor(m_shooter, 0.90));
-    new JoystickButton(m_controller, 1)
+    //Extends Climber
+    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_CIRCLE)
     .whenHeld(new ExtendClimb(m_climberL, m_climberR));
-
-    new JoystickButton(m_controller, 2)
+    //Retracts Climber
+    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_CROSS)
     .whenHeld(new RetractClimb(m_climberL, m_climberR));
-
-    new JoystickButton(m_controller, 5)
+    //Solenoid up
+    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_R_BUMPER)
     .whenPressed(new SolenoidReverse(m_climberP));
-
-    new JoystickButton(m_controller, 6)
+    //Solenoid forward
+    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_L_BUMPER)
     .whenPressed(new SolenoidForward(m_climberP));
 
   }

@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.ClimbConstants;
 import frc.robot.subsystems.ClimberR;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -29,7 +28,7 @@ public class RunRightClimberDown extends CommandBase{
 
     @Override
     public boolean isFinished(){
-        return m_climber.getRightMotorPosition() < 0;
+        return m_climber.getRightMotorPosition() <= 0;
     }
 
 }
