@@ -21,7 +21,8 @@ public class RunLeftClimberDown extends CommandBase {
     @Override
     public void execute(){
         m_climber.runLeft(this.speed);
-        SmartDashboard.putNumber("left", m_climber.getLeftPosition());
+        m_climber.updateEncoderSetPoint();
+        SmartDashboard.putNumber("left", m_climber.getLeftMotorPosition());
     }
 
     @Override

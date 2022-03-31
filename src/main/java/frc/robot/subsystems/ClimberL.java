@@ -15,6 +15,7 @@ public class ClimberL extends SubsystemBase {
 
     private final CANSparkMax leftMotor = new CANSparkMax(Constants.ClimbConstants.CAN_ADDRESS_CLIMB_LEFT, MotorType.kBrushless);
     private final RelativeEncoder leftEncoder = leftMotor.getEncoder();  
+    private double encoderSetPoint = 0;
 
     public ClimberL() {
         leftMotor.setIdleMode(IdleMode.kBrake);
@@ -30,8 +31,12 @@ public class ClimberL extends SubsystemBase {
         return leftEncoder.getPosition();
     }
 
-    public double getLeftPosition() {
-        return leftEncoder.getPosition();
+    public double getLeftSetPoint() {
+        return encoderSetPoint;
+    }
+
+    public void updateEncoderSetPoint() {
+        encoderSetPoint = leftEncoder.getPosition();
     }
 
 } 

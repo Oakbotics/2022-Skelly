@@ -15,6 +15,8 @@ import frc.robot.Constants.DoubleShockConstants;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.commands.AdjustLeftClimber;
+import frc.robot.commands.AdjustRightClimber;
 //commands
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunConveryor;
@@ -66,6 +68,8 @@ public class RobotContainer {
       new Drive(m_robotDrive,() -> driveController.getRawAxis(1),() -> driveController.getRawAxis(4))
       );
     m_climberP.setDefaultCommand(new SolenoidInitialize(m_climberP));
+    m_climberL.setDefaultCommand(new AdjustLeftClimber(m_climberL));
+    m_climberR.setDefaultCommand(new AdjustRightClimber(m_climberR));
   }
 
   /**

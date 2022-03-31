@@ -7,11 +7,12 @@ import frc.robot.commands.RunLeftClimberDown;
 import frc.robot.commands.RunRightClimberDown;
 
 public class RetractClimb extends ParallelCommandGroup{
+
     public RetractClimb(ClimberL m_climberL, ClimberR m_climberR) {
         addCommands(
-            new RunLeftClimberDown(m_climberL, -0.3),
+            new RunLeftClimberDown(m_climberL, -1),
 
-            new RunRightClimberDown(m_climberR, -0.3)
+            new RunRightClimberDown(m_climberR, -1)
         );
     }
 }
