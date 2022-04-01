@@ -14,17 +14,23 @@ public class Drive extends CommandBase {
         m_forward = forward;
         m_rotation = rotation;
         addRequirements(m_driveTrain);
-        m_driveTrain.setNeutralModeBrake();
     }
 
     @Override
     public void initialize() {
         m_driveTrain.resetEncoders();
+        m_driveTrain.setNeutralModeBrake();
+
     }
 
     @Override
     public void execute() {
         m_driveTrain.arcadeDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
         m_driveTrain.getEncoders();
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        m_driveTrain.setNeutralmodeCoast();
     }
 }

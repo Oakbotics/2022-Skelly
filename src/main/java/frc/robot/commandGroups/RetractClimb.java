@@ -10,9 +10,9 @@ public class RetractClimb extends ParallelCommandGroup{
 
     public RetractClimb(ClimberL m_climberL, ClimberR m_climberR) {
         addCommands(
-            new RunLeftClimberDown(m_climberL, -1),
+            new RunLeftClimberDown(m_climberL, -0.8),
 
-            new RunRightClimberDown(m_climberR, -1)
+            new RunRightClimberDown(m_climberR, -0.8)
         );
     }
 }
