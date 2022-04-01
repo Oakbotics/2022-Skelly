@@ -30,9 +30,9 @@ public class RunLeftClimberDown extends CommandBase {
         m_climber.runLeft(0);
     }
 
-    @Override
-    public boolean isFinished(){
-        return m_climber.getLeftMotorPosition() <= 0;
-    }
+    // @Override
+    // public boolean isFinished(){
+    //     return m_climber.getLeftMotorPosition() <= 0;
+    // }
 
 }
