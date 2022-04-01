@@ -20,7 +20,6 @@ import frc.robot.commands.AdjustRightClimber;
 //commands
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunConveryor;
-import frc.robot.commands.SetNeutralCoast;
 import frc.robot.commandGroups.AutoRunShooter;
 //commandgroups
 import frc.robot.commandGroups.RunIntakeAndConveyor;
@@ -80,9 +79,6 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //Set it to Coast
-    new JoystickButton(driveController, LogitechConstants.CONTROLLER_R_START)
-    .whenPressed(new SetNeutralCoast(m_robotDrive));
     //Intake Command
     new JoystickButton(driveController, LogitechConstants.CONTROLLER_L_BUMPER)
     .whenHeld(new RunIntakeAndConveyor(m_intake, m_shooter));
