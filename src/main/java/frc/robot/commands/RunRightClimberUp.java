@@ -19,6 +19,7 @@ public class RunRightClimberUp extends CommandBase{
     @Override
     public void execute(){
         m_climber.runRight(this.speed);
+        m_climber.updateEncoderSetPoint();
         SmartDashboard.putNumber("right", m_climber.getRightMotorPosition());
     }
 

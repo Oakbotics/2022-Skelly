@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.ClimberL;
 
-import frc.robot.Constants.ClimbConstants;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -23,7 +21,8 @@ public class RunLeftClimberDown extends CommandBase {
     @Override
     public void execute(){
         m_climber.runLeft(this.speed);
-        SmartDashboard.putNumber("left", m_climber.getLeftPosition());
+        m_climber.updateEncoderSetPoint();
+        SmartDashboard.putNumber("left", m_climber.getLeftMotorPosition());
     }
 
     @Override

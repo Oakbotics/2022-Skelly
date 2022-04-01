@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class TimedDrive extends CommandBase {
@@ -25,7 +24,7 @@ public class TimedDrive extends CommandBase {
 
     @Override
     public void execute() {
-        m_driveTrain.arcadeDrive(-1, 0);
+        m_driveTrain.arcadeDrive(-0.5, 0);
 
         
         time = Timer.getFPGATimestamp();
@@ -38,7 +37,7 @@ public class TimedDrive extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return time - startTime > 1;
+        return time - startTime > 2;
     }
 
 
