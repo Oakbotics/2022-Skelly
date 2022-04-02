@@ -1,21 +1,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 
 import frc.robot.subsystems.Shooter;
 
-import edu.wpi.first.wpilibj.Timer;
-
-public class TimedShoot extends CommandBase{
+public class TimedRunConveyorOut extends CommandBase {
     private final Shooter m_shooter;
-    private final double elaspTime;
+    private final double speed;
     double startTime;
     double time;
 
-    public TimedShoot(Shooter m_shooter, double elaspTime) {
+    public TimedRunConveyorOut(Shooter m_shooter, double speed) {
         this.m_shooter = m_shooter;
-        this.elaspTime = elaspTime;
-        addRequirements(this.m_shooter);
+        this.speed = speed;
+        addRequirements(m_shooter);
     }
 
     @Override
@@ -26,21 +25,18 @@ public class TimedShoot extends CommandBase{
 
     @Override
     public void execute() {
-        m_shooter.runShooter(0.20);
-        m_shooter.runKicker(0.75);
-        m_shooter.runConveryor(0.90);
+        this.m_shooter.runConveryor(speed);
+        
         time = Timer.getFPGATimestamp();
     }
 
     @Override
     public void end(boolean interrupted) {
-        m_shooter.runShooter(0);
-        m_shooter.runKicker(0);
-        m_shooter.runConveryor(0);
+        this.m_shooter.runConveryor(0);
     }
 
     @Override
-    public boolean isFinished() {
-        return time - startTime > elaspTime;
+    public boolean isFinished(){
+        return time - startTime > 1;
     }
 }

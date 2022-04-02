@@ -20,7 +20,7 @@ public class ClimberL extends SubsystemBase {
     public ClimberL() {
         leftMotor.setIdleMode(IdleMode.kBrake);
         leftMotor.setInverted(false);
-        leftEncoder.setPosition(0);
+        leftEncoder.setPosition(-0.8);
     }
     
     public void runLeft(double speed) {

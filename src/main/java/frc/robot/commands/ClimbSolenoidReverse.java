@@ -5,10 +5,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberPeumatics;
 
 
-public class SolenoidForward extends CommandBase {
+public class ClimbSolenoidReverse extends CommandBase {
     private final ClimberPeumatics m_climberP;
 
-    public SolenoidForward(ClimberPeumatics m_climberP) {
+    public ClimbSolenoidReverse(ClimberPeumatics m_climberP) {
         this.m_climberP = m_climberP;
         addRequirements(this.m_climberP);
     }
@@ -16,7 +16,7 @@ public class SolenoidForward extends CommandBase {
 
     @Override
     public void initialize() {
-        m_climberP.setSolenoidForward();
+        m_climberP.setSolenoidReverse();
     }
 
 }

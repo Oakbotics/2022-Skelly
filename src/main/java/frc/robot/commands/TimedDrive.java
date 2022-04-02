@@ -8,11 +8,15 @@ import frc.robot.subsystems.DriveTrain;
 
 public class TimedDrive extends CommandBase {
     private final DriveTrain m_driveTrain;
+    private final double speed;
+    private final double elaspTime;
     double startTime;
     double time;
 
-    public TimedDrive (DriveTrain m_driveTrain) {
+    public TimedDrive (DriveTrain m_driveTrain, double speed, double elaspTime) {
         this.m_driveTrain = m_driveTrain;
+        this.speed = speed;
+        this.elaspTime = elaspTime;
         addRequirements(m_driveTrain);
     }
         
@@ -24,7 +28,7 @@ public class TimedDrive extends CommandBase {
 
     @Override
     public void execute() {
-        m_driveTrain.arcadeDrive(-0.5, 0);
+        m_driveTrain.arcadeDrive(speed, 0);
 
         
         time = Timer.getFPGATimestamp();
@@ -37,7 +41,7 @@ public class TimedDrive extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return time - startTime > 2;
+        return time - startTime > elaspTime;
     }
 
 

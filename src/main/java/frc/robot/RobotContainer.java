@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -19,16 +20,18 @@ import frc.robot.commands.AdjustLeftClimber;
 import frc.robot.commands.AdjustRightClimber;
 //commands
 import frc.robot.commands.Drive;
-import frc.robot.commands.RunConveryor;
+import frc.robot.commands.RunConveyor;
+import frc.robot.commands.TempLeftClimbUp;
 import frc.robot.commandGroups.AutoRunShooter;
 //commandgroups
 import frc.robot.commandGroups.RunIntakeAndConveyor;
 import frc.robot.commandGroups.TimedAuto;
+import frc.robot.commandGroups.TwoBallAuto;
 import frc.robot.commandGroups.ExtendClimb;
+import frc.robot.commandGroups.Outtake;
 import frc.robot.commandGroups.RetractClimb;
-import frc.robot.commands.SolenoidForward;
-import frc.robot.commands.SolenoidInitialize;
-import frc.robot.commands.SolenoidReverse;
+import frc.robot.commands.ClimbSolenoidForward;
+import frc.robot.commands.ClimbSolenoidReverse;
 
 import frc.robot.subsystems.ClimberL;
 import frc.robot.subsystems.ClimberPeumatics;
@@ -43,19 +46,21 @@ import frc.robot.subsystems.ClimberR;
 public class RobotContainer {
 
   //subsystems
-  private final DriveTrain m_robotDrive = new DriveTrain();
+  private final DriveTrain m_driveTrain = new DriveTrain();
   private final Intake m_intake = new Intake();
   private final Shooter m_shooter = new Shooter();
+  private final ClimberL m_climberL = new ClimberL();
+  private final ClimberR m_climberR = new ClimberR();
+  private final ClimberPeumatics m_climberP = new ClimberPeumatics();
 
   //controllers
   GenericHID opController = new GenericHID(DoubleShockConstants.DOUBLESHOCKCONTROLLER);
   GenericHID driveController = new GenericHID(LogitechConstants.LOGITECHCONTROLLER);
   
   //autocommand
-  private final Command m_autoCommand = new TimedAuto(m_robotDrive, m_shooter);
-  private final ClimberL m_climberL = new ClimberL();
-  private final ClimberR m_climberR = new ClimberR();
-  private final ClimberPeumatics m_climberP = new ClimberPeumatics();
+  private final Command m_oneBallAuto = new TimedAuto(m_driveTrain, m_shooter);
+  private final Command m_twoBallAuto = new TwoBallAuto(m_driveTrain, m_shooter, m_intake);
+
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -64,10 +69,10 @@ public class RobotContainer {
     configureButtonBindings();
 
     
-    m_robotDrive.setDefaultCommand(
-      new Drive(m_robotDrive,() -> driveController.getRawAxis(1),() -> driveController.getRawAxis(4))
+    m_driveTrain.setDefaultCommand(
+      new Drive(m_driveTrain,() -> driveController.getRawAxis(1),() -> driveController.getRawAxis(4))
       );
-    m_climberP.setDefaultCommand(new SolenoidInitialize(m_climberP));
+    m_climberP.setDefaultCommand(new ClimbSolenoidReverse(m_climberP));
     m_climberL.setDefaultCommand(new AdjustLeftClimber(m_climberL));
     m_climberR.setDefaultCommand(new AdjustRightClimber(m_climberR));
   }
@@ -82,12 +87,18 @@ public class RobotContainer {
     //Intake Command
     new JoystickButton(driveController, LogitechConstants.CONTROLLER_L_BUMPER)
     .whenHeld(new RunIntakeAndConveyor(m_intake, m_shooter));
+    //Outtake Command
+    new JoystickButton(driveController, LogitechConstants.CONTROLLER_R_BUMPER)
+    .whenHeld(new Outtake(m_intake, m_shooter));
+
+    new JoystickButton(driveController, LogitechConstants.CONTROLLER_Y)
+    .whenHeld(new TempLeftClimbUp(m_climberL));
     //Run Entire Shooter System Command
     new JoystickButton(opController, DoubleShockConstants.CONTROLLER_SQUARE)
     .whenHeld(new AutoRunShooter(m_shooter));
     //Run Just Conveyor Command
     new JoystickButton(opController, DoubleShockConstants.CONTROLLER_TRIANGLE)
-    .whenHeld(new RunConveryor(m_shooter, 0.90));
+    .whenHeld(new RunConveyor(m_shooter, 0.90));
     //Extends Climber
     new JoystickButton(opController, DoubleShockConstants.CONTROLLER_CIRCLE)
     .whenHeld(new ExtendClimb(m_climberL, m_climberR));
@@ -96,10 +107,10 @@ public class RobotContainer {
     .whenHeld(new RetractClimb(m_climberL, m_climberR));
     //Solenoid up
     new JoystickButton(opController, DoubleShockConstants.CONTROLLER_R_BUMPER)
-    .whenPressed(new SolenoidReverse(m_climberP));
+    .whenPressed(new ClimbSolenoidReverse(m_climberP));
     //Solenoid forward
     new JoystickButton(opController, DoubleShockConstants.CONTROLLER_L_BUMPER)
-    .whenPressed(new SolenoidForward(m_climberP));
+    .whenPressed(new ClimbSolenoidForward(m_climberP));
 
   }
 
@@ -110,6 +121,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return m_oneBallAuto;
   }
 }

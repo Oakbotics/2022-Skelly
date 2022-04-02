@@ -5,10 +5,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberPeumatics;
 
 
-public class SolenoidInitialize extends CommandBase {
+public class ClimbSolenoidInitialize extends CommandBase {
     private final ClimberPeumatics m_climberP;
 
-    public SolenoidInitialize(ClimberPeumatics m_climberP) {
+    public ClimbSolenoidInitialize(ClimberPeumatics m_climberP) {
         this.m_climberP = m_climberP;
         addRequirements(this.m_climberP);
     }

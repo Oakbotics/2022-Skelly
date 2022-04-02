@@ -20,7 +20,7 @@ public class ClimberR extends SubsystemBase {
     public ClimberR() {
         rightMotor.setIdleMode(IdleMode.kBrake);
         rightMotor.setInverted(true);
-        rightEncoder.setPosition(0.8);
+        rightEncoder.setPosition(0);
     }
 
     public void runRight(double speed) {
