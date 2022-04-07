@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import frc.robot.Constants.ClimbConstants;
+
 import frc.robot.subsystems.ClimberL;
 
 public class AdjustLeftClimber extends CommandBase{
@@ -11,6 +13,7 @@ public class AdjustLeftClimber extends CommandBase{
 
     public AdjustLeftClimber(ClimberL m_climberL) {
         this.m_climberL = m_climberL;
+
         addRequirements(this.m_climberL);
     }
 
@@ -23,7 +26,9 @@ public class AdjustLeftClimber extends CommandBase{
             m_climberL.runLeft(0);
         }
         SmartDashboard.putNumber("leftSetPoint", m_climberL.getLeftSetPoint());
+        SmartDashboard.putBoolean("retracted limit", (m_climberL.getLeftMotorPosition() > ClimbConstants.CLIMBER_STRAIGHT_LIMIT && m_climberL.pistonRectracted()));
+        SmartDashboard.putBoolean("extended limit", (m_climberL.getLeftMotorPosition() > ClimbConstants.CLIMBER_FORWARD_LIMIT && m_climberL.pistonExtended()));
+
+
     }
-
-
 }

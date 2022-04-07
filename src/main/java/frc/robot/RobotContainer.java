@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -72,7 +71,7 @@ public class RobotContainer {
     m_driveTrain.setDefaultCommand(
       new Drive(m_driveTrain,() -> driveController.getRawAxis(1),() -> driveController.getRawAxis(4))
       );
-    m_climberP.setDefaultCommand(new ClimbSolenoidReverse(m_climberP));
+    
     m_climberL.setDefaultCommand(new AdjustLeftClimber(m_climberL));
     m_climberR.setDefaultCommand(new AdjustRightClimber(m_climberR));
   }
@@ -107,10 +106,10 @@ public class RobotContainer {
     .whenHeld(new RetractClimb(m_climberL, m_climberR));
     //Solenoid up
     new JoystickButton(opController, DoubleShockConstants.CONTROLLER_R_BUMPER)
-    .whenPressed(new ClimbSolenoidReverse(m_climberP));
+    .whenPressed(new ClimbSolenoidReverse(m_climberP, m_climberL, m_climberR));
     //Solenoid forward
     new JoystickButton(opController, DoubleShockConstants.CONTROLLER_L_BUMPER)
-    .whenPressed(new ClimbSolenoidForward(m_climberP));
+    .whenPressed(new ClimbSolenoidForward(m_climberP, m_climberL, m_climberR));
 
   }
 

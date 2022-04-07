@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class ClimberPeumatics extends SubsystemBase{
     
+    
     private final DoubleSolenoid climberSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
 
     public void setSolenoidForward() {

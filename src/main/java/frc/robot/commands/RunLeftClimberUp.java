@@ -25,6 +25,9 @@ public class RunLeftClimberUp extends CommandBase {
         m_climber.runLeft(this.speed);
         m_climber.updateEncoderSetPoint();
         SmartDashboard.putNumber("left", m_climber.getLeftMotorPosition());
+        // SmartDashboard.putBoolean("retracted limit", (m_climber.getLeftMotorPosition() > ClimbConstants.CLIMBER_STRAIGHT_LIMIT && m_climber.pistonRectracted()));
+        // SmartDashboard.putBoolean("extended limit", (m_climber.getLeftMotorPosition() > ClimbConstants.CLIMBER_FORWARD_LIMIT && m_climber.pistonExtended()));
+
     }
 
     @Override
@@ -34,7 +37,10 @@ public class RunLeftClimberUp extends CommandBase {
 
     @Override
     public boolean isFinished(){
-        return m_climber.getLeftMotorPosition() > ClimbConstants.CLIMBER_LIMIT_Left;
+        return
+        (m_climber.getLeftMotorPosition() > ClimbConstants.CLIMBER_STRAIGHT_LIMIT && m_climber.pistonRectracted())
+        ||
+        (m_climber.getLeftMotorPosition() > ClimbConstants.CLIMBER_FORWARD_LIMIT && m_climber.pistonExtended());
     }
 
 }
