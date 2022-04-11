@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // constants 
-import frc.robot.Constants.LogitechConstants;
-import frc.robot.Constants.DoubleShockConstants;
+import frc.robot.Constants.DriveControllerConstats;
+import frc.robot.Constants.OperateControllerConstants;
 // subsystems
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
@@ -53,8 +53,8 @@ public class RobotContainer {
   private final ClimberPeumatics m_climberP = new ClimberPeumatics();
 
   //controllers
-  GenericHID opController = new GenericHID(DoubleShockConstants.DOUBLESHOCKCONTROLLER);
-  GenericHID driveController = new GenericHID(LogitechConstants.LOGITECHCONTROLLER);
+  GenericHID opController = new GenericHID(OperateControllerConstants.OperateController_ID);
+  GenericHID driveController = new GenericHID(DriveControllerConstats.DriveController_ID);
   
   //autocommand
   private final Command m_oneBallAuto = new TimedAuto(m_driveTrain, m_shooter);
@@ -84,31 +84,31 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Intake Command
-    new JoystickButton(driveController, LogitechConstants.CONTROLLER_L_BUMPER)
+    new JoystickButton(driveController, DriveControllerConstats.CONTROLLER_L_BUMPER)
     .whenHeld(new RunIntakeAndConveyor(m_intake, m_shooter));
     //Outtake Command
-    new JoystickButton(driveController, LogitechConstants.CONTROLLER_R_BUMPER)
+    new JoystickButton(driveController, DriveControllerConstats.CONTROLLER_R_BUMPER)
     .whenHeld(new Outtake(m_intake, m_shooter));
 
-    new JoystickButton(driveController, LogitechConstants.CONTROLLER_Y)
+    new JoystickButton(driveController, DriveControllerConstats.CONTROLLER_Y)
     .whenHeld(new TempLeftClimbUp(m_climberL));
     //Run Entire Shooter System Command
-    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_SQUARE)
+    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_SQUARE)
     .whenHeld(new AutoRunShooter(m_shooter));
     //Run Just Conveyor Command
-    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_TRIANGLE)
+    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_TRIANGLE)
     .whenHeld(new RunConveyor(m_shooter, 0.90));
     //Extends Climber
-    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_CIRCLE)
+    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_CIRCLE)
     .whenHeld(new ExtendClimb(m_climberL, m_climberR));
     //Retracts Climber
-    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_CROSS)
+    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_CROSS)
     .whenHeld(new RetractClimb(m_climberL, m_climberR));
     //Solenoid up
-    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_R_BUMPER)
+    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_R_BUMPER)
     .whenPressed(new ClimbSolenoidReverse(m_climberP, m_climberL, m_climberR));
     //Solenoid forward
-    new JoystickButton(opController, DoubleShockConstants.CONTROLLER_L_BUMPER)
+    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_L_BUMPER)
     .whenPressed(new ClimbSolenoidForward(m_climberP, m_climberL, m_climberR));
 
   }

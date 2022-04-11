@@ -25,8 +25,8 @@ public final class Constants {
         public static final double speedTolerance = 10;
     }
     
-    public static final class LogitechConstants {
-        public static final int LOGITECHCONTROLLER = 0;
+    public static final class DriveControllerConstats {
+        public static final int DriveController_ID = 0;
         public static final int CONTROLLER_A = 1;
         public static final int CONTROLLER_B = 2;
         public static final int CONTROLLER_X = 3;
@@ -38,8 +38,8 @@ public final class Constants {
         public static final int CONTROLLER_R_JOYSTICK = 10;
     }
 
-    public static final class DoubleShockConstants {
-        public static final int DOUBLESHOCKCONTROLLER = 1;
+    public static final class OperateControllerConstants {
+        public static final int OperateController_ID = 1;
         public static final int CONTROLLER_CROSS = 1;
         public static final int CONTROLLER_CIRCLE = 2;
         public static final int CONTROLLER_SQUARE = 3;
