@@ -25,7 +25,7 @@ import frc.robot.commandGroups.AutoRunShooter;
 //commandgroups
 import frc.robot.commandGroups.RunIntakeAndConveyor;
 import frc.robot.commandGroups.TimedAuto;
-import frc.robot.commandGroups.TwoBallAuto;
+// import frc.robot.commandGroups.TwoBallAuto;
 import frc.robot.commandGroups.ExtendClimb;
 import frc.robot.commandGroups.Outtake;
 import frc.robot.commandGroups.RetractClimb;
@@ -58,7 +58,7 @@ public class RobotContainer {
   
   //autocommand
   private final Command m_oneBallAuto = new TimedAuto(m_driveTrain, m_shooter);
-  private final Command m_twoBallAuto = new TwoBallAuto(m_driveTrain, m_shooter, m_intake);
+  // private final Command m_twoBallAuto = new TwoBallAuto(m_driveTrain, m_shooter, m_intake);
 
 
 
