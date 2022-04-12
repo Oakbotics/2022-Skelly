@@ -70,8 +70,7 @@ public final class Constants {
         public static final int CAN_ADDRESS_RIGHT_SHOOTER_MOTOR = 12; 
         public static final int CAN_ADDRESS_KICKER = 51;
 
-        public static final double shooterMaxVelocity = 1200;
-        // 5200;
+        public static final double shooterMaxVelocity = 5200;
     }
     
     public static final class ClimbConstants {

@@ -4,12 +4,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Shooter;
 
-import frc.robot.Constants.ShooterConstant;
-
-public class ShooterRunTillMaxSpeed extends CommandBase{
+public class Shoot extends CommandBase{
     private final Shooter m_shooter;
 
-    public ShooterRunTillMaxSpeed(Shooter m_shooter) {
+    public Shoot(Shooter m_shooter) {
         this.m_shooter = m_shooter;
         addRequirements(this.m_shooter);
     }
@@ -21,16 +19,14 @@ public class ShooterRunTillMaxSpeed extends CommandBase{
 
     @Override
     public void execute() {
-        m_shooter.runShooter(1);
+        m_shooter.runKicker(1);
+        m_shooter.runShooter(0.75);
     }
 
     @Override
     public void end(boolean interrupted) {
-        m_shooter.runShooter(1);
+        m_shooter.runShooter(0);
+        m_shooter.runKicker(0);
     }
 
-    @Override
-    public boolean isFinished() {
-        return (m_shooter.getShooterVelocity() >= (ShooterConstant.shooterMaxVelocity * 0.30));
-    }
-}
+}       
