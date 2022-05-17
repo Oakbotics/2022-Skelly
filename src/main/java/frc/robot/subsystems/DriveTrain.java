@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 
@@ -19,7 +20,7 @@ public class DriveTrain extends SubsystemBase {
     private final WPI_TalonFX rightSecondaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_RIGHT_SECONDARY_MOTOR);
     private final WPI_TalonFX rightPrimaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_RIGHT_PRIMARY_MOTOR);
 
-
+    private StatorCurrentLimitConfiguration motorCurrentLimit = new StatorCurrentLimitConfiguration();
     
     private final MotorControllerGroup m_leftMotors = new MotorControllerGroup(leftPrimaryMotor, leftSecondaryMotor);
     private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(rightPrimaryMotor, rightSecondaryMotor);
@@ -28,6 +29,13 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain() {
         m_rightMotors.setInverted(true);
+
+        motorCurrentLimit.currentLimit = 50;
+
+        leftSecondaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
+        leftPrimaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
+        rightSecondaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
+        rightPrimaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
         
     }
 

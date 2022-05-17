@@ -21,12 +21,12 @@ public class ShooterRunTillMaxSpeed extends CommandBase{
 
     @Override
     public void execute() {
-        m_shooter.runShooter(1);
+        m_shooter.runShooter(0.75);
     }
 
     @Override
     public void end(boolean interrupted) {
-        m_shooter.runShooter(1);
+        m_shooter.runShooter(0.3);
     }
 
     @Override

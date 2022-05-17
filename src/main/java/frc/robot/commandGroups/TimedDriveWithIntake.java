@@ -10,7 +10,7 @@ public class TimedDriveWithIntake extends ParallelRaceGroup{
     
     public TimedDriveWithIntake(DriveTrain m_driveTrain, Shooter m_shooter, Intake m_intake, double speed) {
         addCommands(
-            new TimedDrive(m_driveTrain, -0.5, 2),
+            new TimedDrive(m_driveTrain, -0.5, 1.9),
 
             new RunIntakeAndConveyor(m_intake, m_shooter)
         );

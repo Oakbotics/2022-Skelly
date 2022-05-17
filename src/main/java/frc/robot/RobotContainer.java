@@ -29,6 +29,8 @@ import frc.robot.commands.ClimbSolenoidReverse;
 //commandgroups
 import frc.robot.commandGroups.RunIntakeAndConveyor;
 import frc.robot.commandGroups.TimedAuto;
+import frc.robot.commandGroups.TwoBallAuto;
+import frc.robot.commandGroups.TwoBallAutoUpdated;
 import frc.robot.commandGroups.AutoRunShooter;
 import frc.robot.commandGroups.ExtendClimb;
 import frc.robot.commandGroups.Outtake;
@@ -58,7 +60,8 @@ public class RobotContainer {
   
   //autocommand
   private final Command m_oneBallAuto = new TimedAuto(m_driveTrain, m_shooter);
-  // private final Command m_twoBallAuto = new TwoBallAuto(m_driveTrain, m_shooter, m_intake);
+  private final Command m_twoBallAuto = new TwoBallAuto(m_driveTrain, m_shooter, m_intake);
+  // private final Command m_twoBallAutoUpdated = new TwoBallAutoUpdated(m_driveTrain, m_shooter, m_intake);g
 
 
 
@@ -120,6 +123,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_oneBallAuto;
+    return m_twoBallAuto;
   }
 }

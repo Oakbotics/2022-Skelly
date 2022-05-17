@@ -24,6 +24,7 @@ public class TimedDrive extends CommandBase {
     public void initialize() {
         startTime  = Timer.getFPGATimestamp();
         time = Timer.getFPGATimestamp();
+        m_driveTrain.setNeutralModeBrake();
     }
 
     @Override

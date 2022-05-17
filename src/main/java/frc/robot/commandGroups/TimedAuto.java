@@ -3,7 +3,6 @@ package frc.robot.commandGroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.TimedDrive;
-import frc.robot.commands.TimedRunConveyorOut;
 import frc.robot.commands.TimedShoot;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
@@ -15,9 +14,7 @@ public class TimedAuto extends SequentialCommandGroup{
             
             new TimedShoot(m_shooter, 5),
 
-            new TimedDrive(m_driveTrain, -0.5, 2),
-
-            new TimedRunConveyorOut(m_shooter, -0.9)
+            new TimedDrive(m_driveTrain, -0.5, 2)
         );
     }
 }
