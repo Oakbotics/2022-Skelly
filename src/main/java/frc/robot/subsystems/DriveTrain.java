@@ -48,7 +48,7 @@ public class DriveTrain extends SubsystemBase {
         rightSecondaryMotor.setNeutralMode(NeutralMode.Brake);
     }
 
-    public void setNeutralmodeNoCoast() {
+    public void setNeutralmodeCoast() {
         leftPrimaryMotor.setNeutralMode(NeutralMode.Coast);
         leftSecondaryMotor.setNeutralMode(NeutralMode.Coast);
         rightPrimaryMotor.setNeutralMode(NeutralMode.Coast);
