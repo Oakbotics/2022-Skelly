@@ -18,9 +18,9 @@ public final class Constants {
         public static final int CAN_ADDRESS_LEFT_PRIMARY_MOTOR = 2;
         public static final int CAN_ADDRESS_RIGHT_SECONDARY_MOTOR = 5;
         public static final int CAN_ADDRESS_RIGHT_PRIMARY_MOTOR = 4; 
-        public static final double kP = 45;
-        public static final double kI = 2;
-        public static final double kD = 0.0625;
+        public static final double kP = 0.00007;
+        public static final double kI = 0;
+        public static final double kD = 0;
         public static final double positionTolerance = 1000;
         public static final double speedTolerance = 10;
     }

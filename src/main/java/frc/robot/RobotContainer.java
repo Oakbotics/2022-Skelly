@@ -47,8 +47,8 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         new Drive(
             m_robotDrive,
-            () -> m_controller1.getRawAxis(1),
-            () -> m_controller1.getRawAxis(4))
+            () -> m_controller0.getRawAxis(1),
+            () -> m_controller0.getRawAxis(4))
             );
   }
 
@@ -60,11 +60,11 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_Y)
-    .whenPressed(new DriveDistance(m_robotDrive, 30));
+    .whenPressed(new DriveDistance(m_robotDrive, 36));
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_B)
     .whenPressed(new StraightThenTurn90(m_robotDrive, m_driveTrainForTurn));
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_L_BUMPER)
-    .whenPressed(new ResetDriveTrainEncoder(m_robotDrive));
+    .whenHeld(new ResetDriveTrainEncoder(m_robotDrive));
     new JoystickButton(m_controller0, LogitechConstants.CONTROLLER_A)
     .whenPressed(new TurnDegrees(m_driveTrainForTurn, 90));
   }

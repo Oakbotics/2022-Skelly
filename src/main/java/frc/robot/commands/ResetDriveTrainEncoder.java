@@ -13,7 +13,7 @@ public class ResetDriveTrainEncoder extends CommandBase {
     }
 
     @Override
-    public void execute() {
+    public void initialize() {
         m_driveTrain.resetEncoders();
     }
 
