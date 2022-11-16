@@ -42,12 +42,12 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain() {
         m_rightMotors.setInverted(true);
 
-        motorCurrentLimit.currentLimit = 50;
+        int currentLimit = 50;
 
-        // leftSecondaryMotor.setSmartCurrentLimit(motorCurrentLimit);
-        // leftPrimaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
-        // rightSecondaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
-        // rightPrimaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
+        leftSecondaryMotor.setSmartCurrentLimit(currentLimit);
+        leftPrimaryMotor.setSmartCurrentLimit(currentLimit);
+        rightSecondaryMotor.setSmartCurrentLimit(currentLimit);
+        rightPrimaryMotor.setSmartCurrentLimit(currentLimit);
         
     }
 
@@ -56,7 +56,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double fwd, double rot) {
-        m_drive.arcadeDrive(fwd, -0.50*(rot));
+        m_drive.arcadeDrive(fwd, -0.80*(rot));
         SmartDashboard.putNumber("forward value", fwd);
     }
 

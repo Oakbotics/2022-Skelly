@@ -6,7 +6,7 @@ import frc.robot.commands.ShooterRunTillMaxSpeed;
 import frc.robot.subsystems.Shooter;
 
 public class AutoRunShooter extends SequentialCommandGroup {
-    
+
     public AutoRunShooter(Shooter m_shooter) {
         addCommands(
             new ShooterRunTillMaxSpeed(m_shooter),
