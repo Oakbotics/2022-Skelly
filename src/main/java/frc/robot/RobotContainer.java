@@ -108,10 +108,10 @@ public class RobotContainer {
     new JoystickButton(opController, OperateControllerConstants.CONTROLLER_CROSS)
     .whenHeld(new RetractClimb(m_climberL, m_climberR));
     //Solenoid up
-    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_R_BUMPER)
+    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_L_BUMPER)
     .whenPressed(new ClimbSolenoidReverse(m_climberP, m_climberL, m_climberR));
     //Solenoid forward
-    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_L_BUMPER)
+    new JoystickButton(opController, OperateControllerConstants.CONTROLLER_R_BUMPER)
     .whenPressed(new ClimbSolenoidForward(m_climberP, m_climberL, m_climberR));
 
   }

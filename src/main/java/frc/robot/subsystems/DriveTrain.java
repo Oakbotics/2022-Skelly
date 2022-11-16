@@ -10,15 +10,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 public class DriveTrain extends SubsystemBase {
 
-    private final WPI_TalonFX leftSecondaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_LEFT_SECONDARY_MOTOR);
-    private final WPI_TalonFX leftPrimaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_LEFT_PRIMARY_MOTOR);
-    private final WPI_TalonFX rightSecondaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_RIGHT_SECONDARY_MOTOR);
-    private final WPI_TalonFX rightPrimaryMotor = new WPI_TalonFX(Constants.DriveConstants.CAN_ADDRESS_RIGHT_PRIMARY_MOTOR);
+    private final CANSparkMax leftSecondaryMotor = new CANSparkMax(Constants.DriveConstants.CAN_ADDRESS_LEFT_SECONDARY_MOTOR, MotorType.kBrushless);
+    private final CANSparkMax leftPrimaryMotor = new CANSparkMax(Constants.DriveConstants.CAN_ADDRESS_LEFT_PRIMARY_MOTOR, MotorType.kBrushless);
+    private final CANSparkMax rightSecondaryMotor = new CANSparkMax(Constants.DriveConstants.CAN_ADDRESS_RIGHT_SECONDARY_MOTOR,MotorType.kBrushless);
+    private final CANSparkMax rightPrimaryMotor = new CANSparkMax(Constants.DriveConstants.CAN_ADDRESS_RIGHT_PRIMARY_MOTOR, MotorType.kBrushless);
+
+
+    //private final CANSparkMax leftPrimaryNEO = new CANSparkMax(Constants.DriveConstants.CAN_ADDRESS_LEFT_PRIMARY_MOTOR, MotorType.kBrushless);
+    
 
     private StatorCurrentLimitConfiguration motorCurrentLimit = new StatorCurrentLimitConfiguration();
     
@@ -27,15 +34,20 @@ public class DriveTrain extends SubsystemBase {
 
     private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
+    private final RelativeEncoder leftPrimaryEncoder = leftPrimaryMotor.getEncoder();
+    private final RelativeEncoder rightPrimaryEncoder = rightPrimaryMotor.getEncoder();
+
+
+
     public DriveTrain() {
         m_rightMotors.setInverted(true);
 
-        motorCurrentLimit.currentLimit = 50;
+        int currentLimit = 50;
 
-        leftSecondaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
-        leftPrimaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
-        rightSecondaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
-        rightPrimaryMotor.configStatorCurrentLimit(motorCurrentLimit, 0);
+        leftSecondaryMotor.setSmartCurrentLimit(currentLimit);
+        leftPrimaryMotor.setSmartCurrentLimit(currentLimit);
+        rightSecondaryMotor.setSmartCurrentLimit(currentLimit);
+        rightPrimaryMotor.setSmartCurrentLimit(currentLimit);
         
     }
 
@@ -49,17 +61,17 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void setNeutralModeBrake() {
-        leftPrimaryMotor.setNeutralMode(NeutralMode.Brake);
-        leftSecondaryMotor.setNeutralMode(NeutralMode.Brake);
-        rightPrimaryMotor.setNeutralMode(NeutralMode.Brake);
-        rightSecondaryMotor.setNeutralMode(NeutralMode.Brake);
+        leftPrimaryMotor.setIdleMode(IdleMode.kBrake);
+        leftSecondaryMotor.setIdleMode(IdleMode.kBrake);
+        rightPrimaryMotor.setIdleMode(IdleMode.kBrake);
+        rightSecondaryMotor.setIdleMode(IdleMode.kBrake);
     }
 
-    public void setNeutralmodeCoast() {
-        leftPrimaryMotor.setNeutralMode(NeutralMode.Coast);
-        leftSecondaryMotor.setNeutralMode(NeutralMode.Coast);
-        rightPrimaryMotor.setNeutralMode(NeutralMode.Coast);
-        rightSecondaryMotor.setNeutralMode(NeutralMode.Coast);
+    public void setNeutralModeCoast() {
+        leftPrimaryMotor.setIdleMode(IdleMode.kCoast);
+        leftSecondaryMotor.setIdleMode(IdleMode.kCoast);
+        rightPrimaryMotor.setIdleMode(IdleMode.kCoast);
+        rightSecondaryMotor.setIdleMode(IdleMode.kCoast);
     }
 
     public void setSpeed(double speed) {
@@ -67,35 +79,39 @@ public class DriveTrain extends SubsystemBase {
         m_rightMotors.set(speed);
     }
 
-    public void voltDrive(double current) {
-        leftPrimaryMotor.set(ControlMode.Current, -current);
-        leftSecondaryMotor.set(ControlMode.Current, -current);
-        rightPrimaryMotor.set(ControlMode.Current, current);
-        rightSecondaryMotor.set(ControlMode.Current, current);
-    }
+    
+
+    // public void voltDrive(double current) {
+    //     leftPrimaryMotor.set(ControlMode.Current, -current);
+    //     leftSecondaryMotor.set(ControlMode.Current, -current);
+    //     rightPrimaryMotor.set(ControlMode.Current, current);
+    //     rightSecondaryMotor.set(ControlMode.Current, current);
+    // }
 
     public void setMaxOutput(double maxOutput) {
         m_drive.setMaxOutput(maxOutput);
     }
 
     public double getAverageEncoderDistance() {
-        return ((leftPrimaryMotor.getSelectedSensorPosition()) + -(rightPrimaryMotor.getSelectedSensorPosition())) / 2.0;
+        return ((leftPrimaryEncoder.getPosition()) + -(rightPrimaryEncoder.getPosition())) / 2.0;
     }
 
+
+
     public void resetEncoders() {
-        leftPrimaryMotor.setSelectedSensorPosition(0);
-        rightPrimaryMotor.setSelectedSensorPosition(0);
-        SmartDashboard.putNumber("left encoder", leftPrimaryMotor.getSelectedSensorPosition());
-        SmartDashboard.putNumber("right encoder", rightPrimaryMotor.getSelectedSensorPosition());
+        leftPrimaryEncoder.setPosition(0);
+        rightPrimaryEncoder.setPosition(0);
+        SmartDashboard.putNumber("left encoder", leftPrimaryEncoder.getPosition());
+        SmartDashboard.putNumber("right encoder", rightPrimaryEncoder.getPosition());
     }
 
     public void getEncoders() {
-        SmartDashboard.putNumber("left encoder", -(leftPrimaryMotor.getSelectedSensorPosition()));
-        SmartDashboard.putNumber("right encoder", rightPrimaryMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("left encoder", -(leftPrimaryEncoder.getPosition()));
+        SmartDashboard.putNumber("right encoder", rightPrimaryEncoder.getPosition());
     }
 
     public double getAverageEncoderDistanceNoReverse() {
-        return ((leftPrimaryMotor.getSelectedSensorPosition()) + (rightPrimaryMotor.getSelectedSensorPosition())) / 2.0;
+        return ((leftPrimaryEncoder.getPosition()) + (rightPrimaryEncoder.getPosition())) / 2.0;
     }
 
 }
